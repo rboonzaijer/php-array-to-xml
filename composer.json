@@ -2,9 +2,14 @@
   "name": "refactorstudio/php-array-to-xml",
   "description": "Convert an array to XML with PHP",
   "keywords": [
-    "array",
+    "php-array-to-xml",
+    "refactorstudio",
+    "array-to-xml",
+    "array-to-xml-php",
     "xml",
-    "converter"
+    "parser",
+    "array",
+    "convert"
   ],
   "homepage": "https://github.com/refactorstudio/php-array-to-xml",
   "license": "MIT",
