@@ -21,6 +21,9 @@ class PhpArrayToXml
     protected $_transform_tags = null;
     protected $_format_output = false;
     protected $_numeric_tag_suffix = null;
+    protected $_default_boolean_value_true = 'true';
+    protected $_default_boolean_value_false = 'false';
+    protected $_default_null_value = null;
 
     /**
      * Set the version of the XML (Default = '1.0')
@@ -267,6 +270,69 @@ class PhpArrayToXml
     }
 
     /**
+     * Cast real boolean (true) values to a given string
+     *
+     * @param string $value
+     * @return PhpArrayToXml
+     */
+    public function setCastBooleanValueTrue($value = 'true')
+    {
+        $this->_default_boolean_value_true = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCastBooleanValueTrue()
+    {
+        return $this->_default_boolean_value_true;
+    }
+
+    /**
+     * Cast real boolean (false) values to a given string
+     *
+     * @param string $value
+     * @return PhpArrayToXml
+     */
+    public function setCastBooleanValueFalse($value = 'false')
+    {
+        $this->_default_boolean_value_false = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCastBooleanValueFalse()
+    {
+        return $this->_default_boolean_value_false;
+    }
+
+    /**
+     * Cast real null values to a given string
+     *
+     * @param string $value
+     * @return PhpArrayToXml
+     */
+    public function setCastNullValue($value = null)
+    {
+        $this->_default_null_value = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getCastNullValue()
+    {
+        return $this->_default_null_value;
+    }
+
+    /**
      * Validate if a given value has a proper tag starting character to be used in XML
      *
      * @param null $value
@@ -405,7 +471,7 @@ class PhpArrayToXml
                             $node = $this->createElement($name, null);
 
                             foreach($attributes as $attribute_name => $attribute_value) {
-                                $node->setAttribute($attribute_name, $attribute_value);
+                                $node->setAttribute($attribute_name, $this->normalizeAttributeValue($attribute_value));
                             }
 
                             $parent->appendChild($node);
@@ -425,6 +491,48 @@ class PhpArrayToXml
                 }
             }
         }
+    }
+
+    /**
+     * Normalize a value (replace some characters)
+     *
+     * @param $value
+     * @return null|string
+     */
+    protected function normalizeValue($value)
+    {
+        if($value === true) {
+            return $this->getCastBooleanValueTrue();
+        }
+
+        if($value === false) {
+            return $this->getCastBooleanValueFalse();
+        }
+
+        if($value === null) {
+            return $this->getCastNullValue();
+        }
+
+        return $value;
+    }
+
+    /**
+     * Normalize an attribute value (replace some characters)
+     *
+     * @param $value
+     * @return string
+     */
+    protected function normalizeAttributeValue($value)
+    {
+        if($value === true) {
+            return 'true';
+        }
+
+        if($value === false) {
+            return 'false';
+        }
+
+        return $value;
     }
 
     /**
@@ -458,16 +566,16 @@ class PhpArrayToXml
             $element->appendChild($this->_doc->createCDATASection($value));
 
             foreach($attributes as $attribute_name => $attribute_value) {
-                $element->setAttribute($attribute_name, $attribute_value);
+                $element->setAttribute($attribute_name, $this->normalizeAttributeValue($attribute_value));
             }
 
             return $element;
         }
 
-        $element = $this->_doc->createElement($name, $value);
+        $element = $this->_doc->createElement($name, $this->normalizeValue($value));
 
         foreach($attributes as $attribute_name => $attribute_value) {
-            $element->setAttribute($attribute_name, $attribute_value);
+            $element->setAttribute($attribute_name, $this->normalizeAttributeValue($attribute_value));
         }
 
         return $element;

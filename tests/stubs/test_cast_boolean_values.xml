@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <StringTrue>true</StringTrue>
+  <StringFalse>false</StringFalse>
+  <BooleanTrue>Yes</BooleanTrue>
+  <BooleanFalse>No</BooleanFalse>
+</root>

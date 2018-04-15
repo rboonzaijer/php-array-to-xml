@@ -41,7 +41,7 @@ class PhpArrayToXmlTest extends TestCase
     public function check_if_every_stub_is_being_tested()
     {
         $missing = null;
-        $stubs = glob('stubs' . DIRECTORY_SEPARATOR . '*.*');
+        $stubs = glob(__DIR__ . DIRECTORY_SEPARATOR . 'stubs' . DIRECTORY_SEPARATOR . '*.*');
 
         foreach($stubs as $stub) {
             $path_info = pathinfo($stub);
@@ -59,6 +59,16 @@ class PhpArrayToXmlTest extends TestCase
     {
         $this->assertEquals('lowercase', PhpArrayToXml::LOWERCASE);
         $this->assertEquals('uppercase', PhpArrayToXml::UPPERCASE);
+    }
+
+    public function test_default_values()
+    {
+        $array = $this->getArrayStub(__FUNCTION__);
+        $expected = $this->getXmlStub(__FUNCTION__);
+
+        $result = (new PhpArrayToXml)->prettify()->toXmlString($array);
+
+        $this->assertEquals($expected, $result);
     }
 
     public function test_version_encoding()
@@ -309,6 +319,26 @@ class PhpArrayToXmlTest extends TestCase
         $expected = $this->getXmlStub(__FUNCTION__);
 
         $result = (new PhpArrayToXml)->prettify()->toXmlString($array);
+
+        $this->assertEquals($expected, $result);
+    }
+
+    public function test_cast_boolean_values()
+    {
+        $array = $this->getArrayStub(__FUNCTION__);
+        $expected = $this->getXmlStub(__FUNCTION__);
+
+        $result = (new PhpArrayToXml)->setCastBooleanValueTrue('Yes')->setCastBooleanValueFalse('No')->prettify()->toXmlString($array);
+
+        $this->assertEquals($expected, $result);
+    }
+
+    public function test_cast_null_values()
+    {
+        $array = $this->getArrayStub(__FUNCTION__);
+        $expected = $this->getXmlStub(__FUNCTION__);
+
+        $result = (new PhpArrayToXml)->setCastNullValue('__NULL__')->prettify()->toXmlString($array);
 
         $this->assertEquals($expected, $result);
     }

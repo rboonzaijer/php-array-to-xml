@@ -365,3 +365,88 @@ Result (prettified):
   </node_3>
 </root>
 ```
+
+
+
+## Cast boolean values
+> By default boolean values from the array will be cast to the string 'true' or 'false'. You can choose to cast it to any (string) value you like. This method only works on real boolean values, so strings with the value 'true' and 'false' are untouched.
+>
+> `->setCastBooleanValueTrue(string $value = 'true')`
+
+> `->setCastBooleanValueFalse(string $value = 'false')`
+
+```php
+$array = [
+  'StringTrue' => 'true',
+  'StringFalse' => 'false',
+  'BooleanTrue' => true,
+  'BooleanFalse' => false
+];
+```
+
+Default:
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <StringTrue>true</StringTrue>
+  <StringFalse>false</StringFalse>
+  <BooleanTrue>true</BooleanTrue>
+  <BooleanFalse>false</BooleanFalse>
+</root>
+```
+
+Usage:
+```php
+$xml_string = $converter->setCastBooleanTrue('Yes')->setCastBooleanFalse('No')->toXmlString($array);
+```
+
+Result:
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <StringTrue>true</StringTrue>
+  <StringFalse>false</StringFalse>
+  <BooleanTrue>Yes</BooleanTrue>
+  <BooleanFalse>No</BooleanFalse>
+</root>
+```
+
+
+
+## Cast NULL values
+> By default null values from the array will have no value in the XML, so the tag looks something like this: `<MyTag/>`. You can choose to cast it to any (string) value you like. This method only works on real 'null' values, so strings with the value `'null'` or empty strings `''` are untouched.
+>
+> `->setCastNullValue(null|string $value = null)`
+
+```php
+$array = [
+  'StringNull' => 'null',
+  'StringEmpty' => '',
+  'RealNull' => null
+];
+```
+
+Default:
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <StringNull>null</StringNull>
+  <StringEmpty/>
+  <RealNull/>
+</root>
+```
+
+Usage:
+```php
+$xml_string = $converter->setCastNullValue('__NULL__')->setCastBooleanFalse('No')->toXmlString($array);
+```
+
+Result:
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <StringNull>null</StringNull>
+  <StringEmpty/>
+  <RealNull>__NULL__</RealNull>
+</root>
+```
