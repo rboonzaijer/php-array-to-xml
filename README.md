@@ -384,7 +384,7 @@ $array = [
 ];
 ```
 
-Default:
+Default (prettified):
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
@@ -400,7 +400,7 @@ Usage:
 $xml_string = $converter->setCastBooleanTrue('Yes')->setCastBooleanFalse('No')->toXmlString($array);
 ```
 
-Result:
+Result (prettified):
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
@@ -426,7 +426,7 @@ $array = [
 ];
 ```
 
-Default:
+Default (prettified):
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
@@ -441,7 +441,7 @@ Usage:
 $xml_string = $converter->setCastNullValue('__NULL__')->setCastBooleanFalse('No')->toXmlString($array);
 ```
 
-Result:
+Result (prettified):
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
