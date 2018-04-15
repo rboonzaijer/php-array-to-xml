@@ -7,6 +7,14 @@ Convert an array to XML with PHP
 
 
 
+## Install
+
+```
+composer require refactorstudio/php-array-to-xml
+```
+
+
+
 ## Usage
 
 Basic example:
