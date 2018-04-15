@@ -11,7 +11,7 @@ class PhpArrayToXmlTest extends TestCase
      */
     protected function getXmlStub($name)
     {
-        return file_get_contents('stubs' . DIRECTORY_SEPARATOR . $name . '.xml');
+        return file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . 'stubs' . DIRECTORY_SEPARATOR . $name . '.xml');
     }
 
     /**
@@ -20,7 +20,7 @@ class PhpArrayToXmlTest extends TestCase
      */
     protected function getArrayStub($name)
     {
-        return include('stubs' . DIRECTORY_SEPARATOR . $name . '.php');
+        return include(__DIR__ . DIRECTORY_SEPARATOR . 'stubs' . DIRECTORY_SEPARATOR . $name . '.php');
     }
 
     /** @test */
