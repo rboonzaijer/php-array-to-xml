@@ -41,7 +41,7 @@ class PhpArrayToXmlTest extends TestCase
     public function check_if_every_stub_is_being_tested()
     {
         $missing = null;
-        $stubs = glob('stubs' . DIRECTORY_SEPARATOR . '*.*');
+        $stubs = glob(__DIR__ . DIRECTORY_SEPARATOR . 'stubs' . DIRECTORY_SEPARATOR . '*.*');
 
         foreach($stubs as $stub) {
             $path_info = pathinfo($stub);
