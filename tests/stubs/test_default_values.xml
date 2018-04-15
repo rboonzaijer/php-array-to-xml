@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <StringTrue>true</StringTrue>
+  <StringFalse>false</StringFalse>
+  <BooleanTrue>true</BooleanTrue>
+  <BooleanFalse>false</BooleanFalse>
+  <StringNull>null</StringNull>
+  <StringEmpty/>
+  <RealNull/>
+  <Float>0.987654321</Float>
+  <Integer>12345</Integer>
+  <String>Example</String>
+  <CData><![CDATA[<span>CData Example</span>]]></CData>
+  <Attributes AttrBooleanTrue="true" AttrBooleanFalse="false" AttrString="StringValue" AttrStringNull="null" AttrStringEmpty="" AttrRealNull="" AttrFloat="0.987654321" AttrInteger="12345">Test</Attributes>
+  <CDataWithAttributes Attr1="First" Attr2="Second"><![CDATA[<span>Value</span>]]></CDataWithAttributes>
+</root>

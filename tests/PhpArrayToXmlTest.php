@@ -61,6 +61,16 @@ class PhpArrayToXmlTest extends TestCase
         $this->assertEquals('uppercase', PhpArrayToXml::UPPERCASE);
     }
 
+    public function test_default_values()
+    {
+        $array = $this->getArrayStub(__FUNCTION__);
+        $expected = $this->getXmlStub(__FUNCTION__);
+
+        $result = (new PhpArrayToXml)->prettify()->toXmlString($array);
+
+        $this->assertEquals($expected, $result);
+    }
+
     public function test_version_encoding()
     {
         $array = $this->getArrayStub(__FUNCTION__);
@@ -309,6 +319,26 @@ class PhpArrayToXmlTest extends TestCase
         $expected = $this->getXmlStub(__FUNCTION__);
 
         $result = (new PhpArrayToXml)->prettify()->toXmlString($array);
+
+        $this->assertEquals($expected, $result);
+    }
+
+    public function test_cast_boolean_values()
+    {
+        $array = $this->getArrayStub(__FUNCTION__);
+        $expected = $this->getXmlStub(__FUNCTION__);
+
+        $result = (new PhpArrayToXml)->setCastBooleanValueTrue('Yes')->setCastBooleanValueFalse('No')->prettify()->toXmlString($array);
+
+        $this->assertEquals($expected, $result);
+    }
+
+    public function test_cast_null_values()
+    {
+        $array = $this->getArrayStub(__FUNCTION__);
+        $expected = $this->getXmlStub(__FUNCTION__);
+
+        $result = (new PhpArrayToXml)->setCastNullValue('__NULL__')->prettify()->toXmlString($array);
 
         $this->assertEquals($expected, $result);
     }
