@@ -7,8 +7,8 @@
     <be>value</be>
     <lowercase>value</lowercase>
     <except>
-      <MyCustomNodeName>value</MyCustomNodeName>
-      <MyCustomNodeName>value</MyCustomNodeName>
+      <MyCustomTagName>value</MyCustomTagName>
+      <MyCustomTagName>value</MyCustomTagName>
     </except>
   </will>
 </MyCustomRootName>

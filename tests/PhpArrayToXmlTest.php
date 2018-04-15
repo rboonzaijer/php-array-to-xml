@@ -121,21 +121,21 @@ class PhpArrayToXmlTest extends TestCase
         (new PhpArrayToXml)->setCustomRootName('@@ invalid root name @@');
     }
 
-    public function test_custom_node_name()
+    public function test_custom_tag_name()
     {
         $array = $this->getArrayStub(__FUNCTION__);
         $expected = $this->getXmlStub(__FUNCTION__);
 
-        $result = (new PhpArrayToXml)->setCustomNodeName('MyCustomNode')->prettify()->toXmlString($array);
+        $result = (new PhpArrayToXml)->setCustomTagName('MyCustomTag')->prettify()->toXmlString($array);
 
         $this->assertEquals($expected, $result);
     }
 
-    public function test_custom_node_name_exception()
+    public function test_custom_tag_name_exception()
     {
         $this->expectException(Exception::class);
 
-        (new PhpArrayToXml)->setCustomNodeName('@@ invalid node name @@');
+        (new PhpArrayToXml)->setCustomTagName('@@ invalid tag name @@');
     }
 
     public function test_separator()
@@ -158,7 +158,7 @@ class PhpArrayToXmlTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    // Note: An xml node cannot start with a sign (or other invalid) char, the tag will be prefixed by an underscore (check xml)
+    // Note: An xml tag cannot start with a sign (or other invalid) char, the tag will be prefixed by an underscore (check xml)
     public function test_separator_invalid_start_char()
     {
         $array = $this->getArrayStub(__FUNCTION__);
@@ -174,7 +174,7 @@ class PhpArrayToXmlTest extends TestCase
         $array = $this->getArrayStub('test_format_output');
         $expected = $this->getXmlStub('test_format_output');
 
-        $result = (new PhpArrayToXml)->setMethodTransformKeys(null)->prettify()->toXmlString($array);
+        $result = (new PhpArrayToXml)->setTransformTags(null)->prettify()->toXmlString($array);
 
         $this->assertEquals($expected, $result);
     }
@@ -184,7 +184,7 @@ class PhpArrayToXmlTest extends TestCase
         $array = $this->getArrayStub(__FUNCTION__);
         $expected = $this->getXmlStub(__FUNCTION__);
 
-        $result = (new PhpArrayToXml)->setMethodTransformKeys(PhpArrayToXml::LOWERCASE)->prettify()->toXmlString($array);
+        $result = (new PhpArrayToXml)->setTransformTags(PhpArrayToXml::LOWERCASE)->prettify()->toXmlString($array);
 
         $this->assertEquals($expected, $result);
     }
@@ -196,8 +196,8 @@ class PhpArrayToXmlTest extends TestCase
 
         $result = (new PhpArrayToXml)
             ->setCustomRootName('MyCustomRootName')
-            ->setCustomNodeName('MyCustomNodeName')
-            ->setMethodTransformKeys(PhpArrayToXml::LOWERCASE)
+            ->setCustomTagName('MyCustomTagName')
+            ->setTransformTags(PhpArrayToXml::LOWERCASE)
             ->setFormatOutput()
             ->toXmlString($array);
 
@@ -209,7 +209,7 @@ class PhpArrayToXmlTest extends TestCase
         $array = $this->getArrayStub(__FUNCTION__);
         $expected = $this->getXmlStub(__FUNCTION__);
 
-        $result = (new PhpArrayToXml)->setMethodTransformKeys(PhpArrayToXml::UPPERCASE)->prettify()->toXmlString($array);
+        $result = (new PhpArrayToXml)->setTransformTags(PhpArrayToXml::UPPERCASE)->prettify()->toXmlString($array);
 
         $this->assertEquals($expected, $result);
     }
@@ -221,42 +221,42 @@ class PhpArrayToXmlTest extends TestCase
 
         $result = (new PhpArrayToXml)
             ->setCustomRootName('MyCustomRootName')
-            ->setCustomNodeName('MyCustomNodeName')
-            ->setMethodTransformKeys(PhpArrayToXml::UPPERCASE)
+            ->setCustomTagName('MyCustomTagName')
+            ->setTransformTags(PhpArrayToXml::UPPERCASE)
             ->prettify()
             ->toXmlString($array);
 
         $this->assertEquals($expected, $result);
     }
 
-    public function test_numeric_node_suffix()
+    public function test_numeric_tag_suffix()
     {
         $array = $this->getArrayStub(__FUNCTION__);
         $expected = $this->getXmlStub(__FUNCTION__);
 
-        $result = (new PhpArrayToXml)->setNumericNodeSuffix('_')->prettify()->toXmlString($array);
+        $result = (new PhpArrayToXml)->setNumericTagSuffix('_')->prettify()->toXmlString($array);
 
         $this->assertEquals($expected, $result);
     }
 
-    public function test_numeric_node_suffix_fixed_keys()
+    public function test_numeric_tag_suffix_fixed_keys()
     {
         $array = $this->getArrayStub(__FUNCTION__);
         $expected = $this->getXmlStub(__FUNCTION__);
 
-        $result = (new PhpArrayToXml)->setNumericNodeSuffix(true)->prettify()->toXmlString($array);
+        $result = (new PhpArrayToXml)->setNumericTagSuffix(true)->prettify()->toXmlString($array);
 
         $this->assertEquals($expected, $result);
     }
 
-    public function test_numeric_node_suffix_custom()
+    public function test_numeric_tag_suffix_custom()
     {
         $array = $this->getArrayStub(__FUNCTION__);
         $expected = $this->getXmlStub(__FUNCTION__);
 
         $result = (new PhpArrayToXml)
-            ->setCustomNodeName('MyCustomNodeName')
-            ->setNumericNodeSuffix('')
+            ->setCustomTagName('MyCustomTagName')
+            ->setNumericTagSuffix('')
             ->prettify()
             ->toXmlString($array);
 
@@ -283,7 +283,7 @@ class PhpArrayToXmlTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function test_invalid_node_name()
+    public function test_invalid_tag_name()
     {
         $array = $this->getArrayStub(__FUNCTION__);
         $expected = $this->getXmlStub(__FUNCTION__);

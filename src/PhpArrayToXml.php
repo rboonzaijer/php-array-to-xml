@@ -15,12 +15,12 @@ class PhpArrayToXml
     protected $_encoding = 'UTF-8';
     protected $_default_root_name = 'root';
     protected $_custom_root_name = null;
-    protected $_default_node_name = 'node';
-    protected $_custom_node_name = null;
+    protected $_default_tag_name = 'node';
+    protected $_custom_tag_name = null;
     protected $_separator = '_';
-    protected $_transform_key_names = null;
+    protected $_transform_tags = null;
     protected $_format_output = false;
-    protected $_numeric_node_suffix = null;
+    protected $_numeric_tag_suffix = null;
 
     /**
      * Set the version of the XML (Default = '1.0')
@@ -112,7 +112,7 @@ class PhpArrayToXml
      */
     public function setCustomRootName($value)
     {
-        if (!$this->isValidNodeName($value)) {
+        if (!$this->isValidXmlTag($value)) {
             throw new \Exception('Not a valid root name: ' . $value);
         }
 
@@ -142,45 +142,45 @@ class PhpArrayToXml
     }
 
     /**
-     * Set the custom node name of the XML (only used for inner arrays)
+     * Set the custom tag name of the XML (only used for inner arrays)
      *
      * @param $value
      * @return PhpArrayToXml
      * @throws \Exception
      */
-    public function setCustomNodeName($value)
+    public function setCustomTagName($value)
     {
-        if (!$this->isValidNodeName($value)) {
-            throw new \Exception('Not a valid node name: ' . $value);
+        if (!$this->isValidXmlTag($value)) {
+            throw new \Exception('Not a valid tag name: ' . $value);
         }
 
-        $this->_custom_node_name = $value;
+        $this->_custom_tag_name = $value;
 
         return $this;
     }
 
     /**
-     * Get the custom node name of the XML (only used for inner arrays)
+     * Get the custom tag name of the XML (only used for inner arrays)
      *
      * @return string
      */
-    public function getCustomNodeName()
+    public function getCustomTagName()
     {
-        return $this->_custom_node_name;
+        return $this->_custom_tag_name;
     }
 
     /**
-     * Get the default node name of the XML (only used for inner arrays)
+     * Get the default tag name of the XML (only used for inner arrays)
      *
      * @return string
      */
-    public function getDefaultNodeName()
+    public function getDefaultTagName()
     {
-        return $this->_default_node_name;
+        return $this->_default_tag_name;
     }
 
     /**
-     * Set the value for the separator that will be used to replace special characters in node/tag names
+     * Set the value for the separator that will be used to replace special characters in tag names
      *
      * @param $value
      * @return PhpArrayToXml
@@ -193,7 +193,7 @@ class PhpArrayToXml
     }
 
     /**
-     * Get the value for the separator that will be used to replace special characters in node/tag names
+     * Get the value for the separator that will be used to replace special characters in tag names
      *
      * @return string
      */
@@ -203,7 +203,7 @@ class PhpArrayToXml
     }
 
     /**
-     * Set the method for transforming keys
+     * Set the transformation method for tag names
      * Possible values:
      * - null
      * - 'uppercase'
@@ -212,17 +212,17 @@ class PhpArrayToXml
      * @param $value
      * @return PhpArrayToXml
      */
-    public function setMethodTransformKeys($value = null)
+    public function setTransformTags($value = null)
     {
         switch($value) {
             case self::LOWERCASE:
             case self::UPPERCASE: {
-                $this->_transform_key_names = $value;
+                $this->_transform_tags = $value;
                 break;
             }
             default: {
                 if($value === null) {
-                    $this->_transform_key_names = null;
+                    $this->_transform_tags = null;
                 }
             }
         }
@@ -231,82 +231,82 @@ class PhpArrayToXml
     }
 
     /**
-     * Get the method for transforming keys
+     * Get the transformation method for tag names
      *
      * @return string
      */
-    public function getMethodTransformKeys()
+    public function getTransformTags()
     {
-        return $this->_transform_key_names;
+        return $this->_transform_tags;
     }
 
     /**
-     * Set the numeric node suffix
+     * Set the numeric tag suffix
      *
      * @param null $value
      * @return PhpArrayToXml
      */
-    public function setNumericNodeSuffix($value = null)
+    public function setNumericTagSuffix($value = null)
     {
-        $this->_numeric_node_suffix = $value;
+        $this->_numeric_tag_suffix = $value;
 
         if($value === true || $value === false) {
-            $this->_numeric_node_suffix = '';
+            $this->_numeric_tag_suffix = '';
         }
         return $this;
     }
 
     /**
-     * Get the numeric node suffix
+     * Get the numeric tag suffix
      *
      * @return null
      */
-    public function getNumericNodeSuffix()
+    public function getNumericTagSuffix()
     {
-        return $this->_numeric_node_suffix;
+        return $this->_numeric_tag_suffix;
     }
 
     /**
-     * Validate if a given value has a proper node/tag starting character to be used in XML
+     * Validate if a given value has a proper tag starting character to be used in XML
      *
      * @param null $value
      * @return bool
      */
-    public static function hasValidNodeStart($value = null)
+    public static function hasValidXmlTagStartingChar($value = null)
     {
-        if(preg_match(self::getValidXmlNodeStartPattern(), $value) === 1) {
+        if(preg_match(self::getValidXmlTagStartPattern(), $value) === 1) {
             return true;
         }
         return false;
     }
 
     /**
-     * Validate if a given value is a valid node/tag character
+     * Validate if a given value is a valid tag character
      *
      * @param null $value
      * @return bool
      */
-    public static function isValidNodeNameChar($value = null)
+    public static function isValidXmlTagChar($value = null)
     {
-        if(preg_match(self::getValidXmlNodeNameChar(), $value) === 1) {
+        if(preg_match(self::getValidXmlTagNameChar(), $value) === 1) {
             return true;
         }
         return false;
     }
 
     /**
-     * Validate if a given value is a proper node/tag name to be used in XML
+     * Validate if a given value is a proper tag name to be used in XML
      *
      * @param null $value
      * @return bool
      */
-    public static function isValidNodeName($value = null)
+    public static function isValidXmlTag($value = null)
     {
         if(empty($value) || is_int($value)) {
             return false;
         }
 
-        if(preg_match(self::getValidXmlNodeNamePattern(), $value) === 1) {
+        if(preg_match(self::getValidXmlTagNamePattern(), $value) === 1) {
             return true;
         }
         return false;
@@ -333,11 +333,11 @@ class PhpArrayToXml
     }
 
     /**
-     * Get a regex pattern for valid node names
+     * Get a regex pattern for valid tag names
      *
      * @return string
      */
-    protected static function getValidXmlNodeNamePattern()
+    protected static function getValidXmlTagNamePattern()
     {
         return '~
             # XML 1.0 Name symbol PHP PCRE regex <http://www.w3.org/TR/REC-xml/#NT-Name>
@@ -351,11 +351,11 @@ class PhpArrayToXml
     }
 
     /**
-     * Get a regex pattern for valid node chars
+     * Get a regex pattern for valid tag chars
      *
      * @return string
      */
-    protected static function getValidXmlNodeNameChar()
+    protected static function getValidXmlTagNameChar()
     {
         return '~
             (?(DEFINE)
@@ -367,11 +367,11 @@ class PhpArrayToXml
     }
 
     /**
-     * Get a regex pattern for valid node starting characters
+     * Get a regex pattern for valid tag starting characters
      *
      * @return string
      */
-    protected static function getValidXmlNodeStartPattern()
+    protected static function getValidXmlTagStartPattern()
     {
         return '~^([:A-Z_a-z\\xC0-\\xD6\\xD8-\\xF6\\xF8-\\x{2FF}\\x{370}-\\x{37D}\\x{37F}-\\x{1FFF}\\x{200C}-\\x{200D}\\x{2070}-\\x{218F}\\x{2C00}-\\x{2FEF}\\x{3001}-\\x{D7FF}\\x{F900}-\\x{FDCF}\\x{FDF0}-\\x{FFFD}\\x{10000}-\\x{EFFFF}])~ux';
     }
@@ -451,7 +451,7 @@ class PhpArrayToXml
      */
     protected function createElement($name, $value = null, $cdata = false, $attributes = [])
     {
-        $name = $this->createValidNodeName($name);
+        $name = $this->createValidTagName($name);
 
         if($cdata === true) {
             $element = $this->_doc->createElement($name);
@@ -474,60 +474,60 @@ class PhpArrayToXml
     }
 
     /**
-     * Creates a valid node name
+     * Creates a valid tag name
      *
      * @param null $name
      * @return string
      */
-    protected function createValidNodeName($name = null)
+    protected function createValidTagName($name = null)
     {
         if(empty($name) || $this->isNumericKey($name)) {
             $key = $name;
 
-            if ($this->isValidNodeName($this->getCustomNodeName())) {
-                $name = $this->getCustomNodeName();
+            if ($this->isValidXmlTag($this->getCustomTagName())) {
+                $name = $this->getCustomTagName();
             } else {
-                $name = $this->transformNodeName($this->getDefaultNodeName());
+                $name = $this->transformTagName($this->getDefaultTagName());
             }
 
-            if($this->getNumericNodeSuffix() !== null) {
-                $name = $name . (string)$this->getNumericNodeSuffix() . $key;
+            if($this->getNumericTagSuffix() !== null) {
+                $name = $name . (string)$this->getNumericTagSuffix() . $key;
             }
             return $name;
         }
 
-        if(!$this->isValidNodeName($name)) {
-            $name = $this->replaceInvalidNodeChars($name);
+        if(!$this->isValidXmlTag($name)) {
+            $name = $this->replaceInvalidTagChars($name);
 
-            if(!self::hasValidNodeStart($name)) {
-                $name = $this->prefixInvalidNodeStartingChar($name);
+            if(!self::hasValidXmlTagStartingChar($name)) {
+                $name = $this->prefixInvalidTagStartingChar($name);
             }
         }
-        return $this->transformNodeName($name);
+        return $this->transformTagName($name);
     }
 
     /**
-     * If a node has an invalid starting character, use an underscore as prefix
+     * If a tag has an invalid starting character, use an underscore as prefix
      *
      * @param $value
      * @return string
      */
-    protected function prefixInvalidNodeStartingChar($value)
+    protected function prefixInvalidTagStartingChar($value)
     {
         return '_' . substr($value, 1);
     }
 
     /**
-     * Replace invalid node characters
+     * Replace invalid tag characters
      *
      * @param $value
      * @return null|string|string[]
      */
-    protected function replaceInvalidNodeChars($value)
+    protected function replaceInvalidTagChars($value)
     {
         $pattern = '';
         for($i=0; $i < strlen($value); $i++) {
-            if(!self::isValidNodeNameChar($value[$i])) {
+            if(!self::isValidXmlTagChar($value[$i])) {
                 $pattern .= "\\$value[$i]";
             }
         }
@@ -549,21 +549,21 @@ class PhpArrayToXml
         if (is_string($name)) {
             $name = preg_replace("/[^_a-zA-Z0-9]/", $this->getSeparator(), $name);
         }
-        if ($this->isValidNodeName($name)) {
+        if ($this->isValidXmlTag($name)) {
             return $name;
         }
-        return $this->transformNodeName($this->getDefaultRootName());
+        return $this->transformTagName($this->getDefaultRootName());
     }
 
     /**
-     * Transforms a node name (only when specified)
+     * Transforms a tag name (only when specified)
      *
      * @param null $name
      * @return null|string
      */
-    protected function transformNodeName($name = null)
+    protected function transformTagName($name = null)
     {
-        switch($this->getMethodTransformKeys()) {
+        switch($this->getTransformTags()) {
             case self::LOWERCASE: {
                 return strtolower($name);
                 break;

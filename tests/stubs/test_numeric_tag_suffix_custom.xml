@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <MyCustomTagName0>value</MyCustomTagName0>
+  <MyCustomTagName1>
+    <name>value</name>
+    <price>value</price>
+  </MyCustomTagName1>
+  <MyCustomTagName2>
+    <name>value</name>
+    <price>value</price>
+  </MyCustomTagName2>
+  <MyCustomTagName3>value</MyCustomTagName3>
+  <MyCustomTagName4>value</MyCustomTagName4>
+  <ThirdValue>
+    <MyKey>value</MyKey>
+    <MyCustomTagName0>value</MyCustomTagName0>
+    <MyCustomTagName1>value</MyCustomTagName1>
+    <MyNextKey>value</MyNextKey>
+    <MyCustomTagName2>value</MyCustomTagName2>
+    <MyCustomTagName3>value</MyCustomTagName3>
+  </ThirdValue>
+</root>

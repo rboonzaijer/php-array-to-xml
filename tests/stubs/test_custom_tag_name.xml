@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <MyCustomTag>FirstValue</MyCustomTag>
+  <MyCustomTag>SecondValue</MyCustomTag>
+  <ThirdValue>
+    <MyKey>This is the value</MyKey>
+    <MyCustomTag>This is the value, has no key</MyCustomTag>
+    <MyCustomTag>This is the value, has no key (2)</MyCustomTag>
+  </ThirdValue>
+</root>

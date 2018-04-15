@@ -14,13 +14,13 @@ class PhpArrayToXmlGettersSettersTest extends TestCase
         $this->assertEquals('root', $class->getDefaultRootName());
     }
 
-    /** @covers \RefactorStudio\PhpArrayToXml\PhpArrayToXml::getDefaultNodeName */
-    public function test_it_should_get_the_default_node_name()
+    /** @covers \RefactorStudio\PhpArrayToXml\PhpArrayToXml::getDefaultTagName */
+    public function test_it_should_get_the_default_tag_name()
     {
         $class = new PhpArrayToXml();
 
         // Default
-        $this->assertEquals('node', $class->getDefaultNodeName());
+        $this->assertEquals('node', $class->getDefaultTagName());
     }
 
     /**
@@ -96,22 +96,22 @@ class PhpArrayToXmlGettersSettersTest extends TestCase
         $class = new PhpArrayToXml();
 
         // Default
-        $this->assertEquals(null, $class->getCustomNodeName());
+        $this->assertEquals(null, $class->getCustomTagName());
 
         // Custom
-        $class->setCustomNodeName('MyCustomNodeName');
-        $this->assertEquals('MyCustomNodeName', $class->getCustomNodeName());
+        $class->setCustomTagName('MyCustomTagName');
+        $this->assertEquals('MyCustomTagName', $class->getCustomTagName());
     }
 
     /**
-     * @covers \RefactorStudio\PhpArrayToXml\PhpArrayToXml::setCustomNodeName
+     * @covers \RefactorStudio\PhpArrayToXml\PhpArrayToXml::setCustomTagName
      */
-    public function test_it_should_give_an_exception_when_setting_an_invalid_custom_node_name()
+    public function test_it_should_give_an_exception_when_setting_an_invalid_custom_tag_name()
     {
         $this->expectException(Exception::class);
 
         $class = new PhpArrayToXml();
-        $class->setCustomNodeName(123);
+        $class->setCustomTagName(123);
     }
 
     /**
@@ -142,24 +142,24 @@ class PhpArrayToXmlGettersSettersTest extends TestCase
     }
 
     /**
-     * @covers \RefactorStudio\PhpArrayToXml\PhpArrayToXml::setMethodTransformKeys
-     * @covers \RefactorStudio\PhpArrayToXml\PhpArrayToXml::getMethodTransformKeys
+     * @covers \RefactorStudio\PhpArrayToXml\PhpArrayToXml::setTransformTags
+     * @covers \RefactorStudio\PhpArrayToXml\PhpArrayToXml::getTransformTags
      */
     public function test_it_should_get_and_set_the_key_transform_method()
     {
         $class = new PhpArrayToXml();
 
         // Default
-        $this->assertEquals(null, $class->getMethodTransformKeys());
+        $this->assertEquals(null, $class->getTransformTags());
 
         // Custom
-        $class->setMethodTransformKeys(PhpArrayToXml::LOWERCASE);
-        $this->assertEquals(PhpArrayToXml::LOWERCASE, $class->getMethodTransformKeys());
+        $class->setTransformTags(PhpArrayToXml::LOWERCASE);
+        $this->assertEquals(PhpArrayToXml::LOWERCASE, $class->getTransformTags());
 
-        $class->setMethodTransformKeys(PhpArrayToXml::UPPERCASE);
-        $this->assertEquals(PhpArrayToXml::UPPERCASE, $class->getMethodTransformKeys());
+        $class->setTransformTags(PhpArrayToXml::UPPERCASE);
+        $this->assertEquals(PhpArrayToXml::UPPERCASE, $class->getTransformTags());
 
-        $class->setMethodTransformKeys(null);
-        $this->assertEquals(null, $class->getMethodTransformKeys());
+        $class->setTransformTags(null);
+        $this->assertEquals(null, $class->getTransformTags());
     }
 }

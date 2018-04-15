@@ -5,7 +5,7 @@ use RefactorStudio\PhpArrayToXml\PhpArrayToXml;
 
 class PhpArrayToXmlNodeValidationTest extends TestCase
 {
-    protected $valid_node_names = [
+    protected $valid_tag_names = [
         'node',
         'NoDe',
         'NODE',
@@ -29,7 +29,7 @@ class PhpArrayToXmlNodeValidationTest extends TestCase
         ':node',
     ];
 
-    protected $invalid_node_names = [
+    protected $invalid_tag_names = [
         'no!de',
         'no@de',
         'no#de',
@@ -50,7 +50,7 @@ class PhpArrayToXmlNodeValidationTest extends TestCase
         'no de',
     ];
 
-    protected $node_names_with_invalid_starting_characters = [
+    protected $tag_names_with_invalid_starting_characters = [
         -1,
         0,
         123,
@@ -79,49 +79,49 @@ class PhpArrayToXmlNodeValidationTest extends TestCase
         ' node',
     ];
 
-    public function test_valid_node_starting_characters()
+    public function test_valid_tag_starting_characters()
     {
-        foreach($this->valid_node_names as $node) {
-            $this->assertTrue(PhpArrayToXml::hasValidNodeStart($node), 'Not a valid starting character in: ' . $node);
+        foreach($this->valid_tag_names as $tag) {
+            $this->assertTrue(PhpArrayToXml::hasValidXmlTagStartingChar($tag), 'Not a valid starting character in: ' . $tag);
         }
     }
 
-    public function test_valid_node_name()
+    public function test_valid_tag_name()
     {
-        foreach($this->valid_node_names as $node) {
-            $this->assertTrue(PhpArrayToXml::isValidNodeName($node), 'This is not a valid node name: ' . $node);
+        foreach($this->valid_tag_names as $tag) {
+            $this->assertTrue(PhpArrayToXml::isValidXmlTag($tag), 'This is not a valid tag name: ' . $tag);
         }
     }
 
-    public function test_valid_node_character_except_starting_char()
+    public function test_valid_tag_character_except_starting_char()
     {
         $chars = ['a', '_', ':'];
         foreach($chars as $char) {
-            $this->assertTrue(PhpArrayToXml::isValidNodeNameChar($char));
+            $this->assertTrue(PhpArrayToXml::isValidXmlTagChar($char));
         }
     }
 
-    public function test_invalid_node_starting_characters()
+    public function test_invalid_tag_starting_characters()
     {
-        foreach($this->node_names_with_invalid_starting_characters as $node) {
-            $this->assertFalse(PhpArrayToXml::hasValidNodeStart($node), 'Valid starting character found in: ' . $node);
+        foreach($this->tag_names_with_invalid_starting_characters as $tag) {
+            $this->assertFalse(PhpArrayToXml::hasValidXmlTagStartingChar($tag), 'Valid starting character found in: ' . $tag);
         }
     }
 
-    public function test_invalid_node_name()
+    public function test_invalid_tag_name()
     {
-        $nodes = array_merge($this->node_names_with_invalid_starting_characters, $this->invalid_node_names);
+        $tags = array_merge($this->tag_names_with_invalid_starting_characters, $this->invalid_tag_names);
 
-        foreach($nodes as $node) {
-            $this->assertFalse(PhpArrayToXml::isValidNodeName($node), 'This is a valid node name: ' . $node);
+        foreach($tags as $tag) {
+            $this->assertFalse(PhpArrayToXml::isValidXmlTag($tag), 'This is a valid tag name: ' . $tag);
         }
     }
 
-    public function test_invalid_node_character_except_starting_char()
+    public function test_invalid_tag_character_except_starting_char()
     {
         $chars = [' ', '<', '>', '&', '|', '@'];
         foreach($chars as $char) {
-            $this->assertFalse(PhpArrayToXml::isValidNodeNameChar($char));
+            $this->assertFalse(PhpArrayToXml::isValidXmlTagChar($char));
         }
     }
 }
