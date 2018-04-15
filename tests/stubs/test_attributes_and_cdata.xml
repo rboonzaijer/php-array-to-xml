@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <id>123</id>
+  <scripts>
+    <node type="javascript" id="1"><![CDATA[<script>console.log('Hello World!');</script>]]></node>
+    <node type="javascript" id="25">&lt;script&gt;console.log('Hello World!');&lt;/script&gt;</node>
+    <node type="javascript" id="303"><![CDATA[<script>console.log('Hello World!');</script>]]></node>
+  </scripts>
+  <MyScriptWithoutCDATA>&lt;script&gt;console.log('Hello World!');&lt;/script&gt;</MyScriptWithoutCDATA>
+  <MyCDATAScript type="javascript"><![CDATA[<script>console.log('Hello World!');</script>]]></MyCDATAScript>
+</root>

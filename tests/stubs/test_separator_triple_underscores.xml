@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <there___are>value 1</there___are>
+  <___some___spaces___>value 2</___some___spaces___>
+  <in___these___keys>
+    <they___should___be>value 3</they___should___be>
+    <replaced>value 4</replaced>
+  </in___these___keys>
+</root>

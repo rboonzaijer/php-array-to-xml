@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <id>123</id>
+  <script><![CDATA[<script>
+  console.log('Hello World!');
+  console.log("Hello World!");
+</script>]]></script>
+  <MyArray>
+    <node><![CDATA[<script>
+  console.log('Hello World!');
+  console.log("Hello World!");
+</script>]]></node>
+    <node>
+      <MyChildKey><![CDATA[<script>
+  console.log('Hello World!');
+  console.log("Hello World!");
+</script>]]></MyChildKey>
+    </node>
+    <children>
+      <child-1><![CDATA[<script>
+  console.log('Hello World!');
+  console.log("Hello World!");
+</script>]]></child-1>
+      <child-2><![CDATA[<script>
+  console.log('Hello World!');
+  console.log("Hello World!");
+</script>]]></child-2>
+      <child-3>Just a value</child-3>
+    </children>
+    <MyKeyName><![CDATA[<script>
+  console.log('Hello World!');
+  console.log("Hello World!");
+</script>]]></MyKeyName>
+  </MyArray>
+</root>

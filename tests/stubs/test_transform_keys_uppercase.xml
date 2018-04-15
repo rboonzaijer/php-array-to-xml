@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ROOT>
+  <THESE>value</THESE>
+  <KEYS>value</KEYS>
+  <WILL>
+    <ALL>value</ALL>
+    <BE>value</BE>
+    <UPPERCASE>value</UPPERCASE>
+    <INCLUDING>
+      <NODE>value</NODE>
+      <NODE>value</NODE>
+    </INCLUDING>
+  </WILL>
+</ROOT>

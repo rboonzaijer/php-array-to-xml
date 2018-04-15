@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <id>123</id>
+  <name>John Doe</name>
+  <email>john@example.com</email>
+  <address>
+    <street>BigStreet</street>
+    <number>848484</number>
+  </address>
+  <contacts>
+    <node>Big John</node>
+    <node>Papa John</node>
+    <node>Mama John</node>
+  </contacts>
+  <friends>
+    <node>
+      <id>987</id>
+      <name>FriendsName1</name>
+    </node>
+    <node>
+      <id>654</id>
+      <name>FriendsName2</name>
+    </node>
+    <node>
+      <id>321</id>
+    </node>
+  </friends>
+</root>

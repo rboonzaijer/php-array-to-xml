@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <id>123</id>
+  <script>&lt;script&gt;
+  console.log('Hello World!');
+&lt;/script&gt;</script>
+</root>

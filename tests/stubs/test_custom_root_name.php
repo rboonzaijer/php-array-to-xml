@@ -1,0 +1,5 @@
+<?php
+
+return [
+    'testnode' => 'testvalue'
+];

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <there_are>value 1</there_are>
+  <_some_spaces_>value 2</_some_spaces_>
+  <in_these_keys>
+    <they_should_be>value 3</they_should_be>
+    <replaced>value 4</replaced>
+  </in_these_keys>
+</root>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <node_0>value</node_0>
+  <node_1>
+    <name>value</name>
+    <price>value</price>
+  </node_1>
+  <node_2>
+    <name>value</name>
+    <price>value</price>
+  </node_2>
+  <node_3>value</node_3>
+  <node_4>value</node_4>
+  <ThirdValue>
+    <MyKey>value</MyKey>
+    <node_0>value</node_0>
+    <node_1>value</node_1>
+    <MyNextKey>value</MyNextKey>
+    <node_2>value</node_2>
+    <node_3>value</node_3>
+  </ThirdValue>
+</root>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MyCustomRootName>
+  <THESE>value</THESE>
+  <KEYS>value</KEYS>
+  <WILL>
+    <ALL>value</ALL>
+    <BE>value</BE>
+    <UPPERCASE>value</UPPERCASE>
+    <EXCEPT>
+      <MyCustomNodeName>value</MyCustomNodeName>
+      <MyCustomNodeName>value</MyCustomNodeName>
+    </EXCEPT>
+  </WILL>
+</MyCustomRootName>

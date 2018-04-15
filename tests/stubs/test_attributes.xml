@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <id>123</id>
+  <names title="Name" category="names">
+    <node category="names" family="Doe">John Doe</node>
+    <node category="names" family="Doe">Jane Doe</node>
+    <OtherKey other_tag="None">My Example</OtherKey>
+  </names>
+  <OtherValues>
+    <node>value</node>
+    <node message="duplicate" second_message="another duplicate">value</node>
+    <node>value</node>
+  </OtherValues>
+  <node>value</node>
+  <node tag="example"/>
+</root>
