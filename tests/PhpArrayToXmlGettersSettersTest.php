@@ -88,10 +88,10 @@ class PhpArrayToXmlGettersSettersTest extends TestCase
     }
 
     /**
-     * @covers \RefactorStudio\PhpArrayToXml\PhpArrayToXml::setCustomNodeName
-     * @covers \RefactorStudio\PhpArrayToXml\PhpArrayToXml::getCustomNodeName
+     * @covers \RefactorStudio\PhpArrayToXml\PhpArrayToXml::setCustomTagName
+     * @covers \RefactorStudio\PhpArrayToXml\PhpArrayToXml::getCustomTagName
      */
-    public function test_it_should_get_and_set_the_custom_node_name()
+    public function test_it_should_get_and_set_the_custom_tag_name()
     {
         $class = new PhpArrayToXml();
 
