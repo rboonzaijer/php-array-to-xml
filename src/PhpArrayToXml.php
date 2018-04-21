@@ -246,7 +246,7 @@ class PhpArrayToXml
     /**
      * Set the numeric tag suffix
      *
-     * @param null $value
+     * @param null|string $value
      * @return PhpArrayToXml
      */
     public function setNumericTagSuffix($value = null)
@@ -335,7 +335,7 @@ class PhpArrayToXml
     /**
      * Validate if a given value has a proper tag starting character to be used in XML
      *
-     * @param null $value
+     * @param null|string $value
      * @return bool
      */
     public static function hasValidXmlTagStartingChar($value = null)
@@ -349,7 +349,7 @@ class PhpArrayToXml
     /**
      * Validate if a given value is a valid tag character
      *
-     * @param null $value
+     * @param null|string $value
      * @return bool
      */
     public static function isValidXmlTagChar($value = null)
@@ -363,7 +363,7 @@ class PhpArrayToXml
     /**
      * Validate if a given value is a proper tag name to be used in XML
      *
-     * @param null $value
+     * @param null|string $value
      * @return bool
      */
     public static function isValidXmlTag($value = null)
@@ -552,7 +552,7 @@ class PhpArrayToXml
      * Creates an element for DOMDocument
      *
      * @param $name
-     * @param null $value
+     * @param null|string $value
      * @param bool $cdata
      * @param array $attributes
      * @return DOMElement
@@ -584,7 +584,7 @@ class PhpArrayToXml
     /**
      * Creates a valid tag name
      *
-     * @param null $name
+     * @param null|string $name
      * @return string
      */
     protected function createValidTagName($name = null)
@@ -649,7 +649,7 @@ class PhpArrayToXml
     /**
      * Creates a valid root name
      *
-     * @param null $name
+     * @param null|string $name
      * @return string
      */
     protected function createValidRootName($name = null)
@@ -666,7 +666,7 @@ class PhpArrayToXml
     /**
      * Transforms a tag name (only when specified)
      *
-     * @param null $name
+     * @param null|string $name
      * @return null|string
      */
     protected function transformTagName($name = null)
@@ -674,11 +674,9 @@ class PhpArrayToXml
         switch($this->getTransformTags()) {
             case self::LOWERCASE: {
                 return strtolower($name);
-                break;
             }
             case self::UPPERCASE: {
                 return strtoupper($name);
-                break;
             }
             default: {
                 return $name;
