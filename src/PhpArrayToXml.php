@@ -254,7 +254,7 @@ class PhpArrayToXml
     {
         $this->_numeric_tag_suffix = $value;
 
-        if(is_bool($value) === true) {
+        if (is_bool($value) === true) {
             $this->_numeric_tag_suffix = '';
         }
         return $this;
