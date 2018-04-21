@@ -116,7 +116,7 @@ class PhpArrayToXml
     public function setCustomRootName($value)
     {
         if (!$this->isValidXmlTag($value)) {
-            throw new \Exception('Not a valid root name: ' . $value);
+            throw new \Exception('Not a valid root name: '.$value);
         }
 
         $this->_custom_root_name = $value;
@@ -154,7 +154,7 @@ class PhpArrayToXml
     public function setCustomTagName($value)
     {
         if (!$this->isValidXmlTag($value)) {
-            throw new \Exception('Not a valid tag name: ' . $value);
+            throw new \Exception('Not a valid tag name: '.$value);
         }
 
         $this->_custom_tag_name = $value;
@@ -217,14 +217,14 @@ class PhpArrayToXml
      */
     public function setTransformTags($value = null)
     {
-        switch($value) {
+        switch ($value) {
             case self::LOWERCASE:
             case self::UPPERCASE: {
                 $this->_transform_tags = $value;
                 break;
             }
             default: {
-                if($value === null) {
+                if ($value === null) {
                     $this->_transform_tags = null;
                 }
             }
@@ -253,7 +253,7 @@ class PhpArrayToXml
     {
         $this->_numeric_tag_suffix = $value;
 
-        if($value === true || $value === false) {
+        if ($value === true || $value === false) {
             $this->_numeric_tag_suffix = '';
         }
         return $this;
@@ -340,7 +340,7 @@ class PhpArrayToXml
      */
     public static function hasValidXmlTagStartingChar($value = null)
     {
-        if(preg_match(self::getValidXmlTagStartPattern(), $value) === 1) {
+        if (preg_match(self::getValidXmlTagStartPattern(), $value) === 1) {
             return true;
         }
         return false;
@@ -354,7 +354,7 @@ class PhpArrayToXml
      */
     public static function isValidXmlTagChar($value = null)
     {
-        if(preg_match(self::getValidXmlTagNameChar(), $value) === 1) {
+        if (preg_match(self::getValidXmlTagNameChar(), $value) === 1) {
             return true;
         }
         return false;
@@ -368,11 +368,11 @@ class PhpArrayToXml
      */
     public static function isValidXmlTag($value = null)
     {
-        if(empty($value) || is_int($value)) {
+        if (empty($value) || is_int($value)) {
             return false;
         }
 
-        if(preg_match(self::getValidXmlTagNamePattern(), $value) === 1) {
+        if (preg_match(self::getValidXmlTagNamePattern(), $value) === 1) {
             return true;
         }
         return false;
@@ -458,11 +458,11 @@ class PhpArrayToXml
                     $parent->appendChild($node);
                 } else {
 
-                    if(array_key_exists('@value', $value)) {
+                    if (array_key_exists('@value', $value)) {
                         $cdata = array_key_exists('@cdata', $value) && $value['@cdata'] === true ? true : false;
                         $attributes = array_key_exists('@attr', $value) && is_array($value['@attr']) ? $value['@attr'] : [];
 
-                        if(!is_array($value['@value'])) {
+                        if (!is_array($value['@value'])) {
                             // Create an XML element
                             $node = $this->createElement($name, $value['@value'], $cdata, $attributes);
                             $parent->appendChild($node);
@@ -470,7 +470,7 @@ class PhpArrayToXml
                             // Create an empty XML element 'container'
                             $node = $this->createElement($name, null);
 
-                            foreach($attributes as $attribute_name => $attribute_value) {
+                            foreach ($attributes as $attribute_name => $attribute_value) {
                                 $node->setAttribute($attribute_name, $this->normalizeAttributeValue($attribute_value));
                             }
 
@@ -479,8 +479,7 @@ class PhpArrayToXml
                             // Add all the elements within the array to the 'container'
                             $this->addArrayElements($node, $value['@value']);
                         }
-                    }
-                    else {
+                    } else {
                         // Create an empty XML element 'container'
                         $node = $this->createElement($name, null);
                         $parent->appendChild($node);
@@ -501,15 +500,15 @@ class PhpArrayToXml
      */
     protected function normalizeValue($value)
     {
-        if($value === true) {
+        if ($value === true) {
             return $this->getCastBooleanValueTrue();
         }
 
-        if($value === false) {
+        if ($value === false) {
             return $this->getCastBooleanValueFalse();
         }
 
-        if($value === null) {
+        if ($value === null) {
             return $this->getCastNullValue();
         }
 
@@ -524,11 +523,11 @@ class PhpArrayToXml
      */
     protected function normalizeAttributeValue($value)
     {
-        if($value === true) {
+        if ($value === true) {
             return 'true';
         }
 
-        if($value === false) {
+        if ($value === false) {
             return 'false';
         }
 
@@ -561,11 +560,11 @@ class PhpArrayToXml
     {
         $name = $this->createValidTagName($name);
 
-        if($cdata === true) {
+        if ($cdata === true) {
             $element = $this->_doc->createElement($name);
             $element->appendChild($this->_doc->createCDATASection($value));
 
-            foreach($attributes as $attribute_name => $attribute_value) {
+            foreach ($attributes as $attribute_name => $attribute_value) {
                 $element->setAttribute($attribute_name, $this->normalizeAttributeValue($attribute_value));
             }
 
@@ -574,7 +573,7 @@ class PhpArrayToXml
 
         $element = $this->_doc->createElement($name, $this->normalizeValue($value));
 
-        foreach($attributes as $attribute_name => $attribute_value) {
+        foreach ($attributes as $attribute_name => $attribute_value) {
             $element->setAttribute($attribute_name, $this->normalizeAttributeValue($attribute_value));
         }
 
@@ -589,7 +588,7 @@ class PhpArrayToXml
      */
     protected function createValidTagName($name = null)
     {
-        if(empty($name) || $this->isNumericKey($name)) {
+        if (empty($name) || $this->isNumericKey($name)) {
             $key = $name;
 
             if ($this->isValidXmlTag($this->getCustomTagName())) {
@@ -598,16 +597,16 @@ class PhpArrayToXml
                 $name = $this->transformTagName($this->getDefaultTagName());
             }
 
-            if($this->getNumericTagSuffix() !== null) {
-                $name = $name . (string)$this->getNumericTagSuffix() . $key;
+            if ($this->getNumericTagSuffix() !== null) {
+                $name = $name.(string) $this->getNumericTagSuffix().$key;
             }
             return $name;
         }
 
-        if(!$this->isValidXmlTag($name)) {
+        if (!$this->isValidXmlTag($name)) {
             $name = $this->replaceInvalidTagChars($name);
 
-            if(!self::hasValidXmlTagStartingChar($name)) {
+            if (!self::hasValidXmlTagStartingChar($name)) {
                 $name = $this->prefixInvalidTagStartingChar($name);
             }
         }
@@ -622,7 +621,7 @@ class PhpArrayToXml
      */
     protected function prefixInvalidTagStartingChar($value)
     {
-        return '_' . substr($value, 1);
+        return '_'.substr($value, 1);
     }
 
     /**
@@ -634,13 +633,13 @@ class PhpArrayToXml
     protected function replaceInvalidTagChars($value)
     {
         $pattern = '';
-        for($i=0; $i < strlen($value); $i++) {
-            if(!self::isValidXmlTagChar($value[$i])) {
+        for ($i = 0; $i < strlen($value); $i++) {
+            if (!self::isValidXmlTagChar($value[$i])) {
                 $pattern .= "\\$value[$i]";
             }
         }
 
-        if(!empty($pattern)) {
+        if (!empty($pattern)) {
             $value = preg_replace("/[{$pattern}]/", $this->getSeparator(), $value);
         }
         return $value;
@@ -671,7 +670,7 @@ class PhpArrayToXml
      */
     protected function transformTagName($name = null)
     {
-        switch($this->getTransformTags()) {
+        switch ($this->getTransformTags()) {
             case self::LOWERCASE: {
                 return strtolower($name);
             }
