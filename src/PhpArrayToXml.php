@@ -247,7 +247,7 @@ class PhpArrayToXml
     /**
      * Set the numeric tag suffix
      *
-     * @param null|string $value
+     * @param null|boolean|string $value
      * @return PhpArrayToXml
      */
     public function setNumericTagSuffix($value = null)
