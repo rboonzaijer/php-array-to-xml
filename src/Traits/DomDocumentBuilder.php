@@ -203,28 +203,51 @@ trait DomDocumentBuilder
     protected function createValidTagName($name = null)
     {
         if (empty($name) || $this->isNumericKey($name)) {
-            $key = $name;
-
-            if ($this->isValidXmlTag($this->getCustomTagName())) {
-                $name = $this->getCustomTagName();
-            } else {
-                $name = $this->transformTagName($this->getDefaultTagName());
-            }
-
-            if ($this->getNumericTagSuffix() !== null) {
-                $name = $name.(string) $this->getNumericTagSuffix().$key;
-            }
-            return $name;
+            return $this->createValidTagNameFromNumericValue($name);
         }
 
         if (!$this->isValidXmlTag($name)) {
-            $name = $this->replaceInvalidTagChars($name);
-
-            if (!self::hasValidXmlTagStartingChar($name)) {
-                $name = $this->prefixInvalidTagStartingChar($name);
-            }
+            $name = $this->makeTagNameValid($name);
         }
         return $this->transformTagName($name);
+    }
+
+    /**
+     * Make a tag name valid (replace invalid characters including starting characters)
+     *
+     * @param $name
+     * @return null|string|string[]
+     */
+    protected function makeTagNameValid($name)
+    {
+        $name = $this->replaceInvalidTagChars($name);
+
+        if (!self::hasValidXmlTagStartingChar($name)) {
+            $name = $this->prefixInvalidTagStartingChar($name);
+        }
+        return $name;
+    }
+
+    /**
+     * Create a valid tag name from a numeric value
+     *
+     * @param $name
+     * @return null|string
+     */
+    protected function createValidTagNameFromNumericValue($name)
+    {
+        $key = $name;
+
+        if ($this->isValidXmlTag($this->getCustomTagName())) {
+            $name = $this->getCustomTagName();
+        } else {
+            $name = $this->transformTagName($this->getDefaultTagName());
+        }
+
+        if ($this->getNumericTagSuffix() !== null) {
+            $name = $name . (string)$this->getNumericTagSuffix() . $key;
+        }
+        return $name;
     }
 
     /**
