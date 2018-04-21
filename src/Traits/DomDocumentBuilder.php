@@ -7,6 +7,27 @@ use DOMElement;
 
 trait DomDocumentBuilder
 {
+    protected $_doc;
+
+    abstract public function getEncoding();
+    abstract public function getVersion();
+    abstract public function getFormatOutput();
+    abstract public function getCustomRootName();
+    abstract public function getCastBooleanValueTrue();
+    abstract public function getCastBooleanValueFalse();
+    abstract public function getCastNullValue();
+    abstract public function getCustomTagName();
+    abstract public function getDefaultTagName();
+    abstract public function getNumericTagSuffix();
+    abstract public function getSeparator();
+    abstract public function getDefaultRootName();
+    abstract public function getTransformTags();
+    abstract protected function getConstantUpperCase();
+    abstract protected function getConstantLowerCase();
+    abstract public static function isValidXmlTag($value);
+    abstract public static function isValidXmlTagChar($value);
+    abstract public static function hasValidXmlTagStartingChar($value);
+
     /**
      * Creates a DOMDocument from an array
      *
@@ -21,7 +42,7 @@ trait DomDocumentBuilder
 
         $this->_doc->appendChild($root);
 
-        $this->addArrayElements($root, $array);
+        $this->createElementsFromArray($root, $array);
     }
 
     /**
@@ -30,48 +51,59 @@ trait DomDocumentBuilder
      * @param DOMElement $parent
      * @param array $array
      */
-    protected function addArrayElements(DOMElement $parent, $array = [])
+    protected function createElementsFromArray(DOMElement $parent, $array = [])
     {
-        if (is_array($array)) {
-            foreach ($array as $name => $value) {
-                if (!is_array($value)) {
-                    // Create an XML element
-                    $node = $this->createXmlElement($name, $value);
-                    $parent->appendChild($node);
+        foreach ($array as $name => $value) {
+            if (!is_array($value)) {
+                // Create an XML element
+                $node = $this->createXmlElement($name, $value);
+                $parent->appendChild($node);
+            } else {
+                if (array_key_exists('@value', $value)) {
+                    $this->createAdvancedXmlElement($parent, $value, $name);
                 } else {
+                    // Create an empty XML element 'container'
+                    $node = $this->createXmlElement($name, null);
+                    $parent->appendChild($node);
 
-                    if (array_key_exists('@value', $value)) {
-                        $cdata = array_key_exists('@cdata', $value) && $value['@cdata'] === true ? true : false;
-                        $attributes = array_key_exists('@attr', $value) && is_array($value['@attr']) ? $value['@attr'] : [];
-
-                        if (!is_array($value['@value'])) {
-                            // Create an XML element
-                            $node = $this->createXmlElement($name, $value['@value'], $cdata, $attributes);
-                            $parent->appendChild($node);
-                        } else {
-                            // Create an empty XML element 'container'
-                            $node = $this->createXmlElement($name, null);
-
-                            foreach ($attributes as $attribute_name => $attribute_value) {
-                                $node->setAttribute($attribute_name, $this->normalizeAttributeValue($attribute_value));
-                            }
-
-                            $parent->appendChild($node);
-
-                            // Add all the elements within the array to the 'container'
-                            $this->addArrayElements($node, $value['@value']);
-                        }
-                    } else {
-                        // Create an empty XML element 'container'
-                        $node = $this->createXmlElement($name, null);
-                        $parent->appendChild($node);
-
-                        // Add all the elements within the array to the 'container'
-                        $this->addArrayElements($node, $value);
-                    }
+                    // Add all the elements within the array to the 'container'
+                    $this->createElementsFromArray($node, $value);
                 }
             }
         }
+    }
+
+    /**
+     * Create an 'advanced' XML element, when the array has '@value' in it
+     *
+     * @param DOMElement $parent
+     * @param $value
+     * @param $name
+     * @return DOMElement
+     */
+    protected function createAdvancedXmlElement(DOMElement $parent, $value, $name): DOMElement
+    {
+        $cdata = array_key_exists('@cdata', $value) && $value['@cdata'] === true ? true : false;
+        $attributes = array_key_exists('@attr', $value) && is_array($value['@attr']) ? $value['@attr'] : [];
+
+        if (!is_array($value['@value'])) {
+            // Create an XML element
+            $node = $this->createXmlElement($name, $value['@value'], $cdata, $attributes);
+
+            $parent->appendChild($node);
+        } else {
+            // Create an empty XML element 'container'
+            $node = $this->createXmlElement($name, null);
+
+            foreach ($attributes as $attribute_name => $attribute_value) {
+                $node->setAttribute($attribute_name, $this->normalizeAttributeValue($attribute_value));
+            }
+            $parent->appendChild($node);
+
+            // Add all the elements within the array to the 'container'
+            $this->createElementsFromArray($node, $value['@value']);
+        }
+        return $node;
     }
 
     /**
@@ -171,28 +203,51 @@ trait DomDocumentBuilder
     protected function createValidTagName($name = null)
     {
         if (empty($name) || $this->isNumericKey($name)) {
-            $key = $name;
-
-            if ($this->isValidXmlTag($this->getCustomTagName())) {
-                $name = $this->getCustomTagName();
-            } else {
-                $name = $this->transformTagName($this->getDefaultTagName());
-            }
-
-            if ($this->getNumericTagSuffix() !== null) {
-                $name = $name.(string) $this->getNumericTagSuffix().$key;
-            }
-            return $name;
+            return $this->createValidTagNameFromNumericValue($name);
         }
 
         if (!$this->isValidXmlTag($name)) {
-            $name = $this->replaceInvalidTagChars($name);
-
-            if (!self::hasValidXmlTagStartingChar($name)) {
-                $name = $this->prefixInvalidTagStartingChar($name);
-            }
+            $name = $this->makeTagNameValid($name);
         }
         return $this->transformTagName($name);
+    }
+
+    /**
+     * Make a tag name valid (replace invalid characters including starting characters)
+     *
+     * @param $name
+     * @return null|string|string[]
+     */
+    protected function makeTagNameValid($name)
+    {
+        $name = $this->replaceInvalidTagChars($name);
+
+        if (!self::hasValidXmlTagStartingChar($name)) {
+            $name = $this->prefixInvalidTagStartingChar($name);
+        }
+        return $name;
+    }
+
+    /**
+     * Create a valid tag name from a numeric value
+     *
+     * @param $name
+     * @return null|string
+     */
+    protected function createValidTagNameFromNumericValue($name)
+    {
+        $key = $name;
+
+        if ($this->isValidXmlTag($this->getCustomTagName())) {
+            $name = $this->getCustomTagName();
+        } else {
+            $name = $this->transformTagName($this->getDefaultTagName());
+        }
+
+        if ($this->getNumericTagSuffix() !== null) {
+            $name = $name . (string)$this->getNumericTagSuffix() . $key;
+        }
+        return $name;
     }
 
     /**
@@ -253,10 +308,10 @@ trait DomDocumentBuilder
     protected function transformTagName($name = null)
     {
         switch ($this->getTransformTags()) {
-            case self::LOWERCASE: {
+            case $this->getConstantLowerCase(): {
                 return strtolower($name);
             }
-            case self::UPPERCASE: {
+            case $this->getConstantUpperCase(): {
                 return strtoupper($name);
             }
             default: {

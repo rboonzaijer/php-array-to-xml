@@ -12,7 +12,6 @@ class PhpArrayToXml
     const LOWERCASE = 'lowercase';
     const UPPERCASE = 'uppercase';
 
-    protected $_doc;
     protected $_version = '1.0';
     protected $_encoding = 'UTF-8';
     protected $_default_root_name = 'root';
@@ -248,14 +247,14 @@ class PhpArrayToXml
     /**
      * Set the numeric tag suffix
      *
-     * @param null|string $value
+     * @param null|boolean|string $value
      * @return PhpArrayToXml
      */
     public function setNumericTagSuffix($value = null)
     {
         $this->_numeric_tag_suffix = $value;
 
-        if ($value === true || $value === false) {
+        if (is_bool($value) === true) {
             $this->_numeric_tag_suffix = '';
         }
         return $this;
@@ -378,6 +377,26 @@ class PhpArrayToXml
             return true;
         }
         return false;
+    }
+
+    /**
+     * Get the UPPERCASE constant
+     *
+     * @return string
+     */
+    protected function getConstantUpperCase()
+    {
+        return self::UPPERCASE;
+    }
+
+    /**
+     * Get the LOWERCASE constant
+     *
+     * @return string
+     */
+    protected function getConstantLowerCase()
+    {
+        return self::LOWERCASE;
     }
 
     /**
