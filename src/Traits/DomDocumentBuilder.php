@@ -245,7 +245,7 @@ trait DomDocumentBuilder
         }
 
         if ($this->getNumericTagSuffix() !== null) {
-            $name = $name . (string)$this->getNumericTagSuffix() . $key;
+            $name = $name.(string) $this->getNumericTagSuffix().$key;
         }
         return $name;
     }
