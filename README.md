@@ -1,9 +1,13 @@
-# PhpArrayToXml
+<h1 align="center">PhpArrayToXml</h1>
 
-Convert an array to XML with PHP
+<p align="center">Convert an array to XML with PHP</p>
 
-[![License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/refactorstudio/php-array-to-xml/master.svg?style=flat-square)](https://travis-ci.org/refactorstudio/php-array-to-xml)
+<p align="center">
+  <a href="https://travis-ci.org/refactorstudio/php-array-to-xml"><img src="https://img.shields.io/travis/refactorstudio/php-array-to-xml/master.svg?style=flat-square" alt="Build Status"></a>
+  <a href="https://scrutinizer-ci.com/g/refactorstudio/php-array-to-xml/"><img src="https://img.shields.io/scrutinizer/coverage/g/refactorstudio/php-array-to-xml.svg?style=flat-square" alt="Coverage Status"></a>
+  <a href="https://scrutinizer-ci.com/g/refactorstudio/php-array-to-xml/"><img src="https://img.shields.io/scrutinizer/g/refactorstudio/php-array-to-xml.svg?style=flat-square" alt="Code Quality"></a>
+  <a href="LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square" alt="License"></a>
+</p>
 
 
 
