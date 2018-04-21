@@ -7,6 +7,25 @@ use DOMElement;
 
 trait DomDocumentBuilder
 {
+    protected $_doc;
+
+    abstract public function getEncoding();
+    abstract public function getVersion();
+    abstract public function getFormatOutput();
+    abstract public function getCustomRootName();
+    abstract public function getCastBooleanValueTrue();
+    abstract public function getCastBooleanValueFalse();
+    abstract public function getCastNullValue();
+    abstract public function getCustomTagName();
+    abstract public function isValidXmlTag();
+    abstract public function getDefaultTagName();
+    abstract public function getNumericTagSuffix();
+    abstract public function getSeparator();
+    abstract public function getDefaultRootName();
+    abstract public function getTransformTags();
+    abstract protected function getConstantUpperCase();
+    abstract protected function getConstantLowerCase();
+
     /**
      * Creates a DOMDocument from an array
      *
@@ -32,43 +51,41 @@ trait DomDocumentBuilder
      */
     protected function addArrayElements(DOMElement $parent, $array = [])
     {
-        if (is_array($array)) {
-            foreach ($array as $name => $value) {
-                if (!is_array($value)) {
-                    // Create an XML element
-                    $node = $this->createXmlElement($name, $value);
-                    $parent->appendChild($node);
-                } else {
+        foreach ($array as $name => $value) {
+            if (!is_array($value)) {
+                // Create an XML element
+                $node = $this->createXmlElement($name, $value);
+                $parent->appendChild($node);
+            } else {
 
-                    if (array_key_exists('@value', $value)) {
-                        $cdata = array_key_exists('@cdata', $value) && $value['@cdata'] === true ? true : false;
-                        $attributes = array_key_exists('@attr', $value) && is_array($value['@attr']) ? $value['@attr'] : [];
+                if (array_key_exists('@value', $value)) {
+                    $cdata = array_key_exists('@cdata', $value) && $value['@cdata'] === true ? true : false;
+                    $attributes = array_key_exists('@attr', $value) && is_array($value['@attr']) ? $value['@attr'] : [];
 
-                        if (!is_array($value['@value'])) {
-                            // Create an XML element
-                            $node = $this->createXmlElement($name, $value['@value'], $cdata, $attributes);
-                            $parent->appendChild($node);
-                        } else {
-                            // Create an empty XML element 'container'
-                            $node = $this->createXmlElement($name, null);
-
-                            foreach ($attributes as $attribute_name => $attribute_value) {
-                                $node->setAttribute($attribute_name, $this->normalizeAttributeValue($attribute_value));
-                            }
-
-                            $parent->appendChild($node);
-
-                            // Add all the elements within the array to the 'container'
-                            $this->addArrayElements($node, $value['@value']);
-                        }
+                    if (!is_array($value['@value'])) {
+                        // Create an XML element
+                        $node = $this->createXmlElement($name, $value['@value'], $cdata, $attributes);
+                        $parent->appendChild($node);
                     } else {
                         // Create an empty XML element 'container'
                         $node = $this->createXmlElement($name, null);
+
+                        foreach ($attributes as $attribute_name => $attribute_value) {
+                            $node->setAttribute($attribute_name, $this->normalizeAttributeValue($attribute_value));
+                        }
+
                         $parent->appendChild($node);
 
                         // Add all the elements within the array to the 'container'
-                        $this->addArrayElements($node, $value);
+                        $this->addArrayElements($node, $value['@value']);
                     }
+                } else {
+                    // Create an empty XML element 'container'
+                    $node = $this->createXmlElement($name, null);
+                    $parent->appendChild($node);
+
+                    // Add all the elements within the array to the 'container'
+                    $this->addArrayElements($node, $value);
                 }
             }
         }
@@ -253,10 +270,10 @@ trait DomDocumentBuilder
     protected function transformTagName($name = null)
     {
         switch ($this->getTransformTags()) {
-            case self::LOWERCASE: {
+            case $this->getConstantLowerCase(): {
                 return strtolower($name);
             }
-            case self::UPPERCASE: {
+            case $this->getConstantUpperCase(): {
                 return strtoupper($name);
             }
             default: {
