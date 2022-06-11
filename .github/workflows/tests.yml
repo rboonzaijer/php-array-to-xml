@@ -28,14 +28,14 @@ jobs:
 
       - name: Run test suite
         run: |
-          mkdir ./coverage
+          mkdir -p ./coverage/php-${{ matrix.php-version }}
           php -v
-          php -v > ./coverage/version-php.txt
-          ./vendor/bin/phpunit --version > ./coverage/version-phpunit.txt
-          ./vendor/bin/phpunit --configuration ./phpunit-${{ matrix.php-version }}.xml --coverage-clover ./coverage/coverage.clover --coverage-html ./coverage/html/
+          php -v > ./coverage/php-${{ matrix.php-version }}/php.txt
+          ./vendor/bin/phpunit --version > ./coverage/php-${{ matrix.php-version }}/phpunit.txt
+          ./vendor/bin/phpunit --configuration ./phpunit-${{ matrix.php-version }}.xml --coverage-clover ./coverage/php-${{ matrix.php-version }}/coverage.clover --coverage-html ./coverage/php-${{ matrix.php-version }}/html/
 
       - name: Save coverage results
         uses: actions/upload-artifact@v3
         with:
-          name: coverage-php${{ matrix.php-version }}
-          path: ./coverage/
+          name: coverage
+          path: ./coverage
