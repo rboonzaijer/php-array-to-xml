@@ -29,6 +29,7 @@ jobs:
       - name: Run test suite
         run: |
           mkdir ./coverage
+          php -v
           php -v > ./coverage/version-php.txt
           ./vendor/bin/phpunit --version > ./coverage/version-phpunit.txt
           ./vendor/bin/phpunit --configuration ./phpunit-${{ matrix.php-version }}.xml --coverage-clover ./coverage/coverage.clover --coverage-html ./coverage/html/
