@@ -28,7 +28,10 @@ jobs:
 
       - name: Run test suite
         run: |
-          ./vendor/bin/phpunit --coverage-clover ./coverage/coverage.clover --coverage-html ./coverage/html/
+          mkdir ./coverage
+          php -r 'phpinfo();' > ./coverage/phpinfo.txt
+          ./vendor/bin/phpunit --version > ./coverage/phpunit-version.txt
+          ./vendor/bin/phpunit --configuration ./tests/phpunit-php-${{ matrix.php-version }}.xml --coverage-clover ./coverage/coverage.clover --coverage-html ./coverage/html/
 
       - name: Save coverage results
         uses: actions/upload-artifact@v3
