@@ -3,11 +3,18 @@
 <p align="center">Convert an array to XML with PHP</p>
 
 <p align="center">
-  <a href="https://scrutinizer-ci.com/g/rboonzaijer/php-array-to-xml/"><img src="https://img.shields.io/scrutinizer/coverage/g/rboonzaijer/php-array-to-xml.svg?style=flat-square" alt="Coverage Status"></a>
-  <a href="https://scrutinizer-ci.com/g/rboonzaijer/php-array-to-xml/"><img src="https://img.shields.io/scrutinizer/g/rboonzaijer/php-array-to-xml.svg?style=flat-square" alt="Code Quality"></a>
-  <a href="LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square" alt="License"></a>
+<a href="https://github.com/rboonzaijer/php-array-to-xml/actions/workflows/tests.yml"><img src="https://img.shields.io/github/workflow/status/rboonzaijer/php-array-to-xml/Tests/main"></a>
+<a href="https://github.com/rboonzaijer/php-array-to-xml/blob/main/LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square" alt="License"></a>
+<br>
+<br>
+<a href="https://github.com/rboonzaijer/php-array-to-xml/actions/workflows/tests.yml"><img src="https://shields.io/badge/style-7.0-green?label=php&style=flat-square"></a>
+<a href="https://github.com/rboonzaijer/php-array-to-xml/actions/workflows/tests.yml"><img src="https://shields.io/badge/style-7.1-green?label=php&style=flat-square"></a>
+<a href="https://github.com/rboonzaijer/php-array-to-xml/actions/workflows/tests.yml"><img src="https://shields.io/badge/style-7.2-green?label=php&style=flat-square"></a>
+<a href="https://github.com/rboonzaijer/php-array-to-xml/actions/workflows/tests.yml"><img src="https://shields.io/badge/style-7.3-green?label=php&style=flat-square"></a>
+<a href="https://github.com/rboonzaijer/php-array-to-xml/actions/workflows/tests.yml"><img src="https://shields.io/badge/style-7.4-green?label=php&style=flat-square"></a>
+<a href="https://github.com/rboonzaijer/php-array-to-xml/actions/workflows/tests.yml"><img src="https://shields.io/badge/style-8.0-green?label=php&style=flat-square"></a>
+<a href="https://github.com/rboonzaijer/php-array-to-xml/actions/workflows/tests.yml"><img src="https://shields.io/badge/style-8.1-green?label=php&style=flat-square"></a>
 </p>
-
 
 
 ## Install
