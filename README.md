@@ -5,7 +5,7 @@
 <p align="center">
 <a href="https://github.com/rboonzaijer/php-array-to-xml/actions/workflows/tests.yml"><img src="https://img.shields.io/github/workflow/status/rboonzaijer/php-array-to-xml/Tests/main"></a>
 <a href="https://github.com/rboonzaijer/php-array-to-xml/blob/main/LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square" alt="License"></a>
-<a href="https://github.com/rboonzaijer/php-array-to-xml/actions/workflows/tests.yml"><img src="https://img.shields.io/packagist/php-v/rboonzaijer/php-array-to-xml?style=flat-square"></a>
+<a href="https://packagist.org/packages/rboonzaijer/php-array-to-xml"><img src="https://img.shields.io/packagist/php-v/rboonzaijer/php-array-to-xml?style=flat-square"></a>
 </p>
 
 
