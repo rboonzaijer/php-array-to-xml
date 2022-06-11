@@ -20,7 +20,7 @@
 ## Install
 
 ```
-composer require rboonzaijer/php-array-to-xml
+composer require rboonzaijer/php-array-to-xml ^2.0
 ```
 
 
