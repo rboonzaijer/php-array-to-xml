@@ -33,7 +33,7 @@ jobs:
       - name: Run test suite
         run: |
           mkdir -p ./coverage/php-${{ matrix.php-version }}
-          ./vendor/bin/phpunit --configuration ./phpunit-${{ matrix.php-version }}.xml --coverage-clover ./coverage/php-${{ matrix.php-version }}/coverage.clover --coverage-html ./coverage/php-${{ matrix.php-version }}/html/
+          ./vendor/bin/phpunit --configuration ./tests/phpunit-${{ matrix.php-version }}.xml --coverage-clover ./coverage/php-${{ matrix.php-version }}/coverage.clover --coverage-html ./coverage/php-${{ matrix.php-version }}/html/
 
       - name: Get current date/time
         id: date

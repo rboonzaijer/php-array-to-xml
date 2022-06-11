@@ -4,7 +4,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         backupGlobals="false"
         backupStaticAttributes="false"
-        bootstrap="vendor/autoload.php"
+        bootstrap="./../vendor/autoload.php"
         colors="true"
         convertErrorsToExceptions="true"
         convertNoticesToExceptions="true"
@@ -15,16 +15,16 @@
         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
   <coverage>
     <include>
-      <directory>./src</directory>
+      <directory>./../src</directory>
     </include>
     <exclude>
-      <directory>./vendor</directory>
-      <directory>./tests</directory>
+      <directory>./../vendor</directory>
+      <directory>./../tests</directory>
     </exclude>
   </coverage>
   <testsuites>
     <testsuite name="PhpArrayToXml Test Suite">
-      <directory>./tests/</directory>
+      <directory>./../tests/</directory>
     </testsuite>
   </testsuites>
 </phpunit>
