@@ -23,6 +23,10 @@
 composer require rboonzaijer/php-array-to-xml ^2.0
 ```
 
+Load the vendor files (these already loaded if you are using something like Symfony or Laravel)
+```php
+require __DIR__ . '/vendor/autoload.php';
+```
 
 
 ## Usage
