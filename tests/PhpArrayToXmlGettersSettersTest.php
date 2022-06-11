@@ -1,11 +1,11 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use RefactorStudio\PhpArrayToXml\PhpArrayToXml;
+use RBoonzaijer\PhpArrayToXml\PhpArrayToXml;
 
 class PhpArrayToXmlGettersSettersTest extends TestCase
 {
-    /** @covers \RefactorStudio\PhpArrayToXml\PhpArrayToXml::getDefaultRootName */
+    /** @covers \RBoonzaijer\PhpArrayToXml\PhpArrayToXml::getDefaultRootName */
     public function test_it_should_get_the_default_root_name()
     {
         $class = new PhpArrayToXml();
@@ -14,7 +14,7 @@ class PhpArrayToXmlGettersSettersTest extends TestCase
         $this->assertEquals('root', $class->getDefaultRootName());
     }
 
-    /** @covers \RefactorStudio\PhpArrayToXml\PhpArrayToXml::getDefaultTagName */
+    /** @covers \RBoonzaijer\PhpArrayToXml\PhpArrayToXml::getDefaultTagName */
     public function test_it_should_get_the_default_tag_name()
     {
         $class = new PhpArrayToXml();
@@ -24,8 +24,8 @@ class PhpArrayToXmlGettersSettersTest extends TestCase
     }
 
     /**
-     * @covers \RefactorStudio\PhpArrayToXml\PhpArrayToXml::setVersion
-     * @covers \RefactorStudio\PhpArrayToXml\PhpArrayToXml::getVersion
+     * @covers \RBoonzaijer\PhpArrayToXml\PhpArrayToXml::setVersion
+     * @covers \RBoonzaijer\PhpArrayToXml\PhpArrayToXml::getVersion
      */
     public function test_it_should_get_and_set_the_version()
     {
@@ -40,8 +40,8 @@ class PhpArrayToXmlGettersSettersTest extends TestCase
     }
 
     /**
-     * @covers \RefactorStudio\PhpArrayToXml\PhpArrayToXml::setEncoding
-     * @covers \RefactorStudio\PhpArrayToXml\PhpArrayToXml::getEncoding
+     * @covers \RBoonzaijer\PhpArrayToXml\PhpArrayToXml::setEncoding
+     * @covers \RBoonzaijer\PhpArrayToXml\PhpArrayToXml::getEncoding
      */
     public function test_it_should_get_and_set_the_encoding()
     {
@@ -56,8 +56,8 @@ class PhpArrayToXmlGettersSettersTest extends TestCase
     }
 
     /**
-     * @covers \RefactorStudio\PhpArrayToXml\PhpArrayToXml::setFormatOutput
-     * @covers \RefactorStudio\PhpArrayToXml\PhpArrayToXml::getFormatOutput
+     * @covers \RBoonzaijer\PhpArrayToXml\PhpArrayToXml::setFormatOutput
+     * @covers \RBoonzaijer\PhpArrayToXml\PhpArrayToXml::getFormatOutput
      */
     public function test_it_should_get_and_set_the_format_output()
     {
@@ -72,8 +72,8 @@ class PhpArrayToXmlGettersSettersTest extends TestCase
     }
 
     /**
-     * @covers \RefactorStudio\PhpArrayToXml\PhpArrayToXml::setCustomRootName
-     * @covers \RefactorStudio\PhpArrayToXml\PhpArrayToXml::getCustomRootName
+     * @covers \RBoonzaijer\PhpArrayToXml\PhpArrayToXml::setCustomRootName
+     * @covers \RBoonzaijer\PhpArrayToXml\PhpArrayToXml::getCustomRootName
      */
     public function test_it_should_get_and_set_the_custom_root_name()
     {
@@ -88,8 +88,8 @@ class PhpArrayToXmlGettersSettersTest extends TestCase
     }
 
     /**
-     * @covers \RefactorStudio\PhpArrayToXml\PhpArrayToXml::setCustomTagName
-     * @covers \RefactorStudio\PhpArrayToXml\PhpArrayToXml::getCustomTagName
+     * @covers \RBoonzaijer\PhpArrayToXml\PhpArrayToXml::setCustomTagName
+     * @covers \RBoonzaijer\PhpArrayToXml\PhpArrayToXml::getCustomTagName
      */
     public function test_it_should_get_and_set_the_custom_tag_name()
     {
@@ -104,7 +104,7 @@ class PhpArrayToXmlGettersSettersTest extends TestCase
     }
 
     /**
-     * @covers \RefactorStudio\PhpArrayToXml\PhpArrayToXml::setCustomTagName
+     * @covers \RBoonzaijer\PhpArrayToXml\PhpArrayToXml::setCustomTagName
      */
     public function test_it_should_give_an_exception_when_setting_an_invalid_custom_tag_name()
     {
@@ -115,7 +115,7 @@ class PhpArrayToXmlGettersSettersTest extends TestCase
     }
 
     /**
-     * @covers \RefactorStudio\PhpArrayToXml\PhpArrayToXml::setCustomRootName
+     * @covers \RBoonzaijer\PhpArrayToXml\PhpArrayToXml::setCustomRootName
      */
     public function test_it_should_give_an_exception_when_setting_an_invalid_custom_root_name()
     {
@@ -126,8 +126,8 @@ class PhpArrayToXmlGettersSettersTest extends TestCase
     }
 
     /**
-     * @covers \RefactorStudio\PhpArrayToXml\PhpArrayToXml::setSeparator
-     * @covers \RefactorStudio\PhpArrayToXml\PhpArrayToXml::getSeparator
+     * @covers \RBoonzaijer\PhpArrayToXml\PhpArrayToXml::setSeparator
+     * @covers \RBoonzaijer\PhpArrayToXml\PhpArrayToXml::getSeparator
      */
     public function test_it_should_get_and_set_the_separator()
     {
@@ -142,8 +142,8 @@ class PhpArrayToXmlGettersSettersTest extends TestCase
     }
 
     /**
-     * @covers \RefactorStudio\PhpArrayToXml\PhpArrayToXml::setTransformTags
-     * @covers \RefactorStudio\PhpArrayToXml\PhpArrayToXml::getTransformTags
+     * @covers \RBoonzaijer\PhpArrayToXml\PhpArrayToXml::setTransformTags
+     * @covers \RBoonzaijer\PhpArrayToXml\PhpArrayToXml::getTransformTags
      */
     public function test_it_should_get_and_set_the_key_transform_method()
     {

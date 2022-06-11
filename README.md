@@ -3,9 +3,8 @@
 <p align="center">Convert an array to XML with PHP</p>
 
 <p align="center">
-  <a href="https://travis-ci.org/refactorstudio/php-array-to-xml"><img src="https://img.shields.io/travis/refactorstudio/php-array-to-xml/master.svg?style=flat-square" alt="Build Status"></a>
-  <a href="https://scrutinizer-ci.com/g/refactorstudio/php-array-to-xml/"><img src="https://img.shields.io/scrutinizer/coverage/g/refactorstudio/php-array-to-xml.svg?style=flat-square" alt="Coverage Status"></a>
-  <a href="https://scrutinizer-ci.com/g/refactorstudio/php-array-to-xml/"><img src="https://img.shields.io/scrutinizer/g/refactorstudio/php-array-to-xml.svg?style=flat-square" alt="Code Quality"></a>
+  <a href="https://scrutinizer-ci.com/g/rboonzaijer/php-array-to-xml/"><img src="https://img.shields.io/scrutinizer/coverage/g/rboonzaijer/php-array-to-xml.svg?style=flat-square" alt="Coverage Status"></a>
+  <a href="https://scrutinizer-ci.com/g/rboonzaijer/php-array-to-xml/"><img src="https://img.shields.io/scrutinizer/g/rboonzaijer/php-array-to-xml.svg?style=flat-square" alt="Code Quality"></a>
   <a href="LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square" alt="License"></a>
 </p>
 
@@ -14,7 +13,7 @@
 ## Install
 
 ```
-composer require refactorstudio/php-array-to-xml
+composer require rboonzaijer/php-array-to-xml
 ```
 
 
@@ -23,7 +22,7 @@ composer require refactorstudio/php-array-to-xml
 
 Basic example:
 ```php
-use RefactorStudio\PhpArrayToXml\PhpArrayToXml;
+use RBoonzaijer\PhpArrayToXml\PhpArrayToXml;
 
 $converter = new PhpArrayToXml();
 

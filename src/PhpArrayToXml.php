@@ -1,9 +1,9 @@
 <?php
 
-namespace RefactorStudio\PhpArrayToXml;
+namespace RBoonzaijer\PhpArrayToXml;
 
-use RefactorStudio\PhpArrayToXml\Lib\XmlPatterns;
-use RefactorStudio\PhpArrayToXml\Traits\DomDocumentBuilder;
+use RBoonzaijer\PhpArrayToXml\Lib\XmlPatterns;
+use RBoonzaijer\PhpArrayToXml\Traits\DomDocumentBuilder;
 
 class PhpArrayToXml
 {

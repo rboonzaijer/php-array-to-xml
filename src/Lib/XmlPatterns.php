@@ -1,6 +1,6 @@
 <?php
 
-namespace RefactorStudio\PhpArrayToXml\Lib;
+namespace RBoonzaijer\PhpArrayToXml\Lib;
 
 class XmlPatterns
 {
