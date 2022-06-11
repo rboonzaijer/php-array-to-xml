@@ -456,3 +456,15 @@ Result (prettified):
   <RealNull>__NULL__</RealNull>
 </root>
 ```
+
+# PHPUnit Tests
+Use a specific configuration file, depending on your php version:
+```
+./vendor/bin/phpunit --configuration ./tests/phpunit-7.0.xml
+./vendor/bin/phpunit --configuration ./tests/phpunit-7.1.xml
+./vendor/bin/phpunit --configuration ./tests/phpunit-7.2.xml
+./vendor/bin/phpunit --configuration ./tests/phpunit-7.3.xml
+./vendor/bin/phpunit --configuration ./tests/phpunit-7.4.xml
+./vendor/bin/phpunit --configuration ./tests/phpunit-8.0.xml
+./vendor/bin/phpunit --configuration ./tests/phpunit-8.1.xml
+```

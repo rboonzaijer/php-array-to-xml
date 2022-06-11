@@ -1,29 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- PHPUnit 7	PHP 7.1 - PHP 7.3 (https://phpunit.de/supported-versions.html) -->
+<!-- PHPUnit 8	>= PHP 7.2 (https://phpunit.de/supported-versions.html) -->
 <phpunit backupGlobals="false"
          backupStaticAttributes="false"
-         bootstrap="vendor/autoload.php"
+         bootstrap="./../vendor/autoload.php"
          colors="true"
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
          processIsolation="false"
          stopOnFailure="false">
-
   <filter>
     <whitelist>
-      <directory>./src</directory>
+      <directory>./../src</directory>
       <exclude>
-        <directory>./vendor</directory>
-        <directory>./tests</directory>
+        <directory>./../vendor</directory>
+        <directory>./../tests</directory>
       </exclude>
     </whitelist>
   </filter>
-
   <testsuites>
     <testsuite name="PhpArrayToXml Test Suite">
-      <directory>./tests/</directory>
+      <directory>./../tests/</directory>
     </testsuite>
   </testsuites>
-
 </phpunit>
