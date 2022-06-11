@@ -32,15 +32,13 @@ jobs:
 
       - name: Run test suite
         run: |
-          mkdir -p ./coverage/php-${{ matrix.php-version }}
-          ./vendor/bin/phpunit --configuration ./tests/phpunit-${{ matrix.php-version }}.xml --coverage-clover ./coverage/php-${{ matrix.php-version }}/coverage.clover --coverage-html ./coverage/php-${{ matrix.php-version }}/html/
-
-      - name: Get current date/time
-        id: date
-        run: echo "::set-output name=date::$(date +'%Y%m%d-%H%M')"
+          mkdir ./coverage
+          php -v > ./coverage/php${{ matrix.php-version }}_output.txt && echo '' >> ./coverage/php${{ matrix.php-version }}_output.txt
+          ./vendor/bin/phpunit --configuration ./tests/phpunit-${{ matrix.php-version }}.xml --coverage-clover ./coverage/php${{ matrix.php-version }}_coverage.clover >> ./coverage/php${{ matrix.php-version }}_output.txt
+          cat ./coverage/php${{ matrix.php-version }}_output.txt
 
       - name: Save coverage results
         uses: actions/upload-artifact@v3
         with:
-          name: coverage_php-array-to-xml_${{ steps.date.outputs.date }}
+          name: coverage_clover_php-array-to-xml
           path: ./coverage
