@@ -1,6 +1,6 @@
 <?php
 
-namespace RefactorStudio\PhpArrayToXml\Traits;
+namespace RBoonzaijer\PhpArrayToXml\Traits;
 
 use DOMDocument;
 use DOMElement;

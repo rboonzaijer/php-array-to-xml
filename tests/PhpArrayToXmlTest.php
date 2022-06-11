@@ -1,7 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use RefactorStudio\PhpArrayToXml\PhpArrayToXml;
+use RBoonzaijer\PhpArrayToXml\PhpArrayToXml;
 
 class PhpArrayToXmlTest extends TestCase
 {
@@ -51,7 +51,7 @@ class PhpArrayToXmlTest extends TestCase
                 $missing .= "\n Method name missing: {$method_name}() for stub: {$stub}";
             }
         }
-        $this->assertEmpty($missing, $missing);
+        $this->assertEmpty($missing);
     }
 
     /** @test */

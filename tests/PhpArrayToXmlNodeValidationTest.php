@@ -1,7 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use RefactorStudio\PhpArrayToXml\PhpArrayToXml;
+use RBoonzaijer\PhpArrayToXml\PhpArrayToXml;
 
 class PhpArrayToXmlNodeValidationTest extends TestCase
 {

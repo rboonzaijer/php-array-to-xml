@@ -1,9 +1,8 @@
 {
-  "name": "refactorstudio/php-array-to-xml",
+  "name": "rboonzaijer/php-array-to-xml",
   "description": "Convert an array to XML with PHP",
   "keywords": [
     "php-array-to-xml",
-    "refactorstudio",
     "array-to-xml",
     "array-to-xml-php",
     "xml",
@@ -11,31 +10,31 @@
     "array",
     "convert"
   ],
-  "homepage": "https://github.com/refactorstudio/php-array-to-xml",
+  "homepage": "https://github.com/rboonzaijer/php-array-to-xml",
   "license": "MIT",
   "authors": [
     {
-      "name": "Roel Boonzaijer",
-      "email": "mail@refactorstudio.com",
-      "homepage": "https://www.refactorstudio.com",
+      "name": "R Boonzaijer",
+      "email": "noreply@247web.nl",
+      "homepage": "https://www.247web.nl",
       "role": "Developer"
     }
   ],
   "require": {
-    "php" : "^7.0"
+    "php" : "^8.0|^7.0"
   },
   "require-dev": {
-    "phpunit/phpunit" : "^6.3",
+    "phpunit/phpunit" : "^9.5|^8.5|^7.5|^6.5",
     "mockery/mockery": "^1.0"
   },
   "autoload": {
     "psr-4": {
-      "RefactorStudio\\PhpArrayToXml\\": "src"
+      "RBoonzaijer\\PhpArrayToXml\\": "src"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "RefactorStudio\\PhpArrayToXml\\Test\\": "tests"
+      "RBoonzaijer\\PhpArrayToXml\\Test\\": "tests"
     }
   }
 }
