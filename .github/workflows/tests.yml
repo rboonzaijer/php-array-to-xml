@@ -28,6 +28,10 @@ jobs:
 
       - name: Run test suite
         run: |
-          ./vendor/bin/phpunit --coverage-clover=coverage.clover
-          wget https://scrutinizer-ci.com/ocular.phar
-          php ocular.phar code-coverage:upload --format=php-clover coverage.clover
+          ./vendor/bin/phpunit --coverage-clover ./coverage/coverage.clover --coverage-html ./coverage/html/
+
+      - name: Save coverage results
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage
+          path: ./coverage/
