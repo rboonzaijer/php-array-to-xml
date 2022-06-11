@@ -29,8 +29,8 @@ jobs:
       - name: Run test suite
         run: |
           mkdir ./coverage
-          php -r 'phpinfo();' > ./coverage/phpinfo.txt
-          ./vendor/bin/phpunit --version > ./coverage/phpunit-version.txt
+          php -v > ./coverage/version-php.txt
+          ./vendor/bin/phpunit --version > ./coverage/version-phpunit.txt
           ./vendor/bin/phpunit --configuration ./phpunit-${{ matrix.php-version }}.xml --coverage-clover ./coverage/coverage.clover --coverage-html ./coverage/html/
 
       - name: Save coverage results
