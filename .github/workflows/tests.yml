@@ -3,6 +3,10 @@ name: Tests
 on:
   push:
   pull_request:
+  workflow_dispatch:
+  schedule:
+    # “At 17:45 on Friday.”
+    - cron:  '45 17 * * 5'
 
 jobs:
   build:
@@ -28,14 +32,15 @@ jobs:
 
       - name: Run test suite
         run: |
-          mkdir ./coverage
-          php -v
-          php -v > ./coverage/version-php.txt
-          ./vendor/bin/phpunit --version > ./coverage/version-phpunit.txt
-          ./vendor/bin/phpunit --configuration ./phpunit-${{ matrix.php-version }}.xml --coverage-clover ./coverage/coverage.clover --coverage-html ./coverage/html/
+          mkdir -p ./coverage/php-${{ matrix.php-version }}
+          ./vendor/bin/phpunit --configuration ./phpunit-${{ matrix.php-version }}.xml --coverage-clover ./coverage/php-${{ matrix.php-version }}/coverage.clover --coverage-html ./coverage/php-${{ matrix.php-version }}/html/
+
+      - name: Get current date/time
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y%m%d-%H%M')"
 
       - name: Save coverage results
         uses: actions/upload-artifact@v3
         with:
-          name: coverage-php${{ matrix.php-version }}
-          path: ./coverage/
+          name: coverage_php-array-to-xml_${{ steps.date.outputs.date }}
+          path: ./coverage
