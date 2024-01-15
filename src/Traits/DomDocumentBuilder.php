@@ -184,11 +184,12 @@ trait DomDocumentBuilder
 
             return $element;
         }
-
-        $element = $this->_doc->createElement($name, $this->normalizeValue($value));
+        $normalizedValue = $this->normalizeValue($value);
+        $element = $this->_doc->createElement($name, $normalizedValue === null ? '' : $normalizedValue);
 
         foreach ($attributes as $attribute_name => $attribute_value) {
-            $element->setAttribute($attribute_name, $this->normalizeAttributeValue($attribute_value));
+            $normalizedValue = $this->normalizeAttributeValue($attribute_value);
+            $element->setAttribute($attribute_name, $normalizedValue === null ? '' : $normalizedValue);
         }
 
         return $element;
