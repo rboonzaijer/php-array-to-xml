@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-version: ['7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1']
+        php-version: ['7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2']
 
     steps:
       - uses: actions/checkout@v3
@@ -34,7 +34,7 @@ jobs:
         run: |
           mkdir ./coverage
           php -v > ./coverage/php${{ matrix.php-version }}_output.txt && echo '' >> ./coverage/php${{ matrix.php-version }}_output.txt
-          ./vendor/bin/phpunit --configuration ./tests/phpunit-${{ matrix.php-version }}.xml --coverage-clover ./coverage/php${{ matrix.php-version }}_coverage.clover >> ./coverage/php${{ matrix.php-version }}_output.txt
+          ./vendor/bin/phpunit -c ./tests/phpunit-${{ matrix.php-version }}.xml --coverage-clover ./coverage/php${{ matrix.php-version }}_coverage.clover >> ./coverage/php${{ matrix.php-version }}_output.txt
           cat ./coverage/php${{ matrix.php-version }}_output.txt
 
       - name: Save coverage results

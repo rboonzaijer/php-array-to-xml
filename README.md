@@ -15,7 +15,8 @@
 <a href="https://github.com/rboonzaijer/php-array-to-xml/actions/workflows/tests.yml"><img src="https://shields.io/badge/style-7.4-green?label=php&style=flat-square"></a>
 <a href="https://github.com/rboonzaijer/php-array-to-xml/actions/workflows/tests.yml"><img src="https://shields.io/badge/style-8.0-green?label=php&style=flat-square"></a>
 <a href="https://github.com/rboonzaijer/php-array-to-xml/actions/workflows/tests.yml"><img src="https://shields.io/badge/style-8.1-green?label=php&style=flat-square"></a>
-  
+<a href="https://github.com/rboonzaijer/php-array-to-xml/actions/workflows/tests.yml"><img src="https://shields.io/badge/style-8.2-green?label=php&style=flat-square"></a>
+
 </p>
 
 
