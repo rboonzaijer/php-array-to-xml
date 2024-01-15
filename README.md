@@ -27,7 +27,7 @@
 composer require rboonzaijer/php-array-to-xml ^2.0
 ```
 
-Load the vendor files (these already loaded if you are using something like Symfony or Laravel)
+Require the vendor files (these already loaded if you are using something like Symfony or Laravel)
 ```php
 require __DIR__ . '/vendor/autoload.php';
 ```
@@ -469,14 +469,6 @@ Result (prettified):
 </root>
 ```
 
-# PHPUnit Tests
-Use a specific configuration file, depending on your php version:
-```
-./vendor/bin/phpunit --configuration ./tests/phpunit-7.0.xml
-./vendor/bin/phpunit --configuration ./tests/phpunit-7.1.xml
-./vendor/bin/phpunit --configuration ./tests/phpunit-7.2.xml
-./vendor/bin/phpunit --configuration ./tests/phpunit-7.3.xml
-./vendor/bin/phpunit --configuration ./tests/phpunit-7.4.xml
-./vendor/bin/phpunit --configuration ./tests/phpunit-8.0.xml
-./vendor/bin/phpunit --configuration ./tests/phpunit-8.1.xml
-```
+## Development
+
+- [DEVELOPMENT.md](DEVELOPMENT.md)

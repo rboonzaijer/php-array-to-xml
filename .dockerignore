@@ -1,0 +1,7 @@
+.docker
+.dockerignore
+.git
+.github
+composer.lock
+docker-compose.yml
+vendor/
