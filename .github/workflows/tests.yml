@@ -38,7 +38,7 @@ jobs:
           cat ./coverage/php${{ matrix.php-version }}_output.txt
 
       - name: Save coverage results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: coverage_clover_php-array-to-xml
           path: ./coverage
