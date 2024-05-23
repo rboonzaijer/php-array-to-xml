@@ -1,12 +1,12 @@
 name: Tests
 
 on:
-  push:
+  #push:
   pull_request:
   workflow_dispatch:
   schedule:
-    # “At 12:00 on Wednesdays.”
-    - cron:  '0 12 * * 3'
+    # “At 12:00”
+    - cron:  '0 12 * * *'
 
 jobs:
   build:
