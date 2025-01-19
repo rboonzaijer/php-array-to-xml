@@ -1,6 +1,9 @@
-version: "3"
-
 services:
+
+  php8.4:
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile-php8.4
 
   php8.3:
     build:
