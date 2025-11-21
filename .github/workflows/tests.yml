@@ -5,8 +5,8 @@ on:
   pull_request:
   workflow_dispatch:
   schedule:
-    # “At 12:00”
-    - cron:  '0 12 * * *'
+    # “At 17:00 on Thursday.”
+    - cron:  '0 17 * * THU'
 
 jobs:
   build:
