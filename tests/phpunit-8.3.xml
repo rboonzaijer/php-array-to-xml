@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- PHPUnit 10	>= PHP 8.1 (https://phpunit.de/supported-versions.html) -->
+<!-- PHPUnit 12	>= PHP 8.3 (https://phpunit.de/supported-versions.html - https://phpunit.de/documentation.html) -->
 <phpunit
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
         backupGlobals="false" 
@@ -8,7 +8,7 @@
         processIsolation="false" 
         stopOnFailure="false" 
         cacheResult="false" 
-        xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd" 
+        xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/12.4/phpunit.xsd" 
         cacheDirectory=".phpunit.cache" 
         backupStaticProperties="false">
   <testsuites>
