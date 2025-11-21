@@ -1,5 +1,10 @@
 services:
 
+  php8.5:
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile-php8.5
+
   php8.4:
     build:
       context: .
